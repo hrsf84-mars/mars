@@ -1,13 +1,13 @@
 # Project Name
 
-> Pithy project description
+> An advanced movie database that combines movie data and social media stats.
 
 ## Team
 
-  - teamMember
-  - teamMember
-  - teamMember
-  - teamMember
+  - Joe
+  - Cliff
+  - Hubert
+  - Tim
 
 ## Table of Contents
 
@@ -21,14 +21,14 @@
 
 ## Usage
 
-> Some usage instructions
+> Point your browser at cliffonmarsdb.herokuapp.com
 
 ## Requirements
 
-- Node 6.4.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
+- Node >=6.4.0
+- Express
+- MongoDB
+- React
 - etc
 
 ## Development
@@ -38,9 +38,7 @@
 From within the root directory:
 
 ```sh
-npm install -g bower
 npm install
-bower install
 ```
 
 ### Roadmap
@@ -50,4 +48,4 @@ View the project roadmap [here](LINK_TO_DOC)
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+Submit pull request, at least 1 peer should review
