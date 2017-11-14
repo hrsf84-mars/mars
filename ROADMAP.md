@@ -3,5 +3,5 @@
   - Display API data to users of our website
   - Add advanced displays of data (charts, tables, interactive?)
   - Compare movies to other movies
-  - Data for aggregate categories and statistics (genre, year, country)
+  - Aggregate data across categories (genre, year, country)
   - Perform analytics on the data (projections and predictions)
