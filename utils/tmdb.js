@@ -1,19 +1,23 @@
 const axios = require('axios');
 
-// exports.fetchMovie = () => {
-//   axios.get(`http://api.themoviedb.org/3/discover/movie/${}`, {
-//     params: {
-//       sort_by: ''
-//     }
-//   })
-// };
+exports.searchMoviesByName = query => {
+  axios.get('http://api.themoviedb.org/3/search/movie', {
+    params: {
+      'api_key': process.env.API_KEY,
+      // 'language': 'en-US',
+      query,
+    }
+  }).then(res => console.log(res.data)).catch(err => console.error(err.response.data.status_message));
+};
 
-console.log(process.env.API_KEY);
+exports.fetchMovieById = id => {
+  axios.get(`http://api.themoviedb.org/3/movie/${id}`, {
+    params: {
+      'api_key': process.env.API_KEY,
+      // 'language': 'en-US',
+    }
+  }).then(res => console.log(res.data)).catch(err => console.error(err.response.data.status_message));
+};
 
-const movieId = 550;
-
-axios.get(`http://api.themoviedb.org/3/movie/${movieId}`, {
-  params: {
-    'api_key': process.env.API_KEY
-  }
-}).then(res => console.log(res.data)).catch(err => console.error(err));
+// exports.searchMoviesByName('spider man');
+// exports.fetchMovieById(557);
