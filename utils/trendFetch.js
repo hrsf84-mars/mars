@@ -3,6 +3,16 @@ const googleTrends = require('google-trends-api');
 module.exports.timeLine = googleTrends.interestOverTime;
 // argument: options object
 // returns a promise with a JSON string result
+// options has form:
+// {
+//   keyword: String or Array,
+//   startTime: Date() (default: Jan 1 2004),
+//   endTime: Date() (default: now),
+//   geo: location (default: all),
+//   hl: language (default: english),
+//   category: String (default: all),
+// }
+
 // JSON.parse(result).default.timelineData is an array
 // timelineData[i] has form: 
 // {
