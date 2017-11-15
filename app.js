@@ -10,16 +10,31 @@ app.get('/', (req, res) => {
   res.send('This is the landing page!');
 });
 
-app.get('/presentation/:movie', (req, res) => {
-  const movie = req.params.movie;
-  // fetch/check db
-
-  tmdb.searchMoviesByName(movie).then(data => {
-    // store into db
-
+app.get('/search/:movie', (req, res) => {
+  tmdb.searchMoviesByName(req.params.movie).then(data => {
     res.send(data);
   });
-  // res.send(`This is the presentation page for ${movie}`);
+});
+
+app.get('/movie/:tmdbId', (req, res) => {
+  const tmdbId = req.params.tmdbId;
+
+  // fetch/check db
+
+  const results = {};
+
+  const dataProm = tmdb.fetchMovieById(tmdbId).then(data => {
+    results.data = data;
+  });
+
+  const imgProm = tmdb.fetchImageById(tmdbId).then(images => {
+    results.images = images;
+  });
+
+  Promise.all([dataProm, imgProm]).then(() => {
+    // store results into db
+    res.send(results);
+  });
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
