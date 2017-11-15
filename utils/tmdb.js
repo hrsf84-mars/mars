@@ -23,6 +23,3 @@ exports.fetchMovieById = id => {
     }
   }).then(res => console.log(res.data)).catch(err => console.error(err.response.data.status_message));
 };
-
-// exports.searchMoviesByName('spider man');
-// exports.fetchMovieById(557);
