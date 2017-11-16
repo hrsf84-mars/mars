@@ -43,4 +43,4 @@ module.exports.data = [ { time: '1486252800',
     formattedAxisTime: 'Apr 2',
     value: 85,
     formattedValue: [ '9', '85' ] }
-]
+];
