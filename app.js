@@ -21,10 +21,20 @@ app.get('/movie/:tmdbId', (req, res) => {
 
   // fetch/check db
 
-  const results = {};
+  const results = {
+    tmdbId,
+
+  };
 
   const dataProm = tmdb.fetchMovieById(tmdbId).then(data => {
-    results.data = data;
+    // results.data = data;
+    results.title = data.title;
+    results.productionCompanies = data.production_companies.map(company => company.name);
+    results.genres = data.genres.map(genre => genre.name);
+    results.budget = data.budget;
+    results.revenue = data.revenue;
+    // resutlts.estimatedProfit =
+    results.releaseDate = data.releaseDate;
   });
 
   const imgProm = tmdb.fetchImageById(tmdbId).then(images => {
