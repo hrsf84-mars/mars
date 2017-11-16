@@ -1,3 +1,4 @@
 text eol=lf
 *.txt eol=crlf
 * text=auto
+public/js/bundle.js linguist-generated=true
