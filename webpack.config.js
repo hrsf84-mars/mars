@@ -1,7 +1,7 @@
 module.exports = {
   entry: './public/index.js',
   output: {
-    path: __dirname + '/public',
+    path: __dirname + '/public/',
     filename: 'bundle.js'
   },
   module: {
@@ -9,11 +9,11 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: 'babel-loader',
-        exclude: '/node_modules/',
+        exclude: /node_modules/,
         query: {
           presets: ['env', 'react']
         }
       }
     ]
   }
-}
+};
