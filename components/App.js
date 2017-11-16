@@ -1,7 +1,7 @@
 import React from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Label } from 'recharts';
 import example from './exampleData.js';
-var data = example.data;
+const data = example.data;
 
 class App extends React.Component {
   constructor() {
