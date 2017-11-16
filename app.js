@@ -21,10 +21,7 @@ app.get('/movie/:tmdbId', (req, res) => {
 
   // fetch/check db
 
-  const results = {
-    tmdbId,
-
-  };
+  const results = {tmdbId};
 
   const dataProm = tmdb.fetchMovieById(tmdbId).then(data => {
     // results.data = data;
