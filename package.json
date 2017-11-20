@@ -8,7 +8,8 @@
     "node": "<=8.9.0"
   },
   "scripts": {
-    "start": "node app"
+    "start": "node app",
+    "test": "mocha specs --recursive"
   },
   "dependencies": {
     "axios": "^0.17.1",
