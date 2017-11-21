@@ -10,40 +10,31 @@ module.exports.data = {
     longitudinal_data: [
         {
           formattedAxisTime: 'Feb 5',
-          google_trends_vol: 84,
-          past_week_revenue: 1239
+          google_trends_vol: 84
         }, {
           formattedAxisTime: 'Feb 12',
-          google_trends_vol: 85,
-          past_week_revenue: 929
+          google_trends_vol: 85
         }, {
           formattedAxisTime: 'Feb 19',
-          google_trends_vol: 86,
-          past_week_revenue: 1039
+          google_trends_vol: 86
         }, {
           formattedAxisTime: 'Feb 26',
-          google_trends_vol: 88,
-          past_week_revenue: 839
+          google_trends_vol: 88
         }, {
           formattedAxisTime: 'Mar 5',
-          google_trends_vol: 87,
-          past_week_revenue: 1039
+          google_trends_vol: 87
         }, {
           formattedAxisTime: 'Mar 12',
-          google_trends_vol: 89,
-          past_week_revenue: 1000
+          google_trends_vol: 89
         }, {
           formattedAxisTime: 'Mar 19',
-          google_trends_vol: 90,
-          past_week_revenue: 987
+          google_trends_vol: 90
         }, {
           formattedAxisTime: 'Mar 26',
-          google_trends_vol: 90,
-          past_week_revenue: 1469
+          google_trends_vol: 90
         }, {
           formattedAxisTime: 'Apr 2',
-          google_trends_vol: 85,
-          past_week_revenue: 1399
+          google_trends_vol: 85
         }
     ]
 };
