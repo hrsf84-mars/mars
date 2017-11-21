@@ -1,6 +1,17 @@
 const googleTrends = require('google-trends-api');
+const moment = require('moment');
 
 module.exports.timeLine = googleTrends.interestOverTime;
+
+//return a promise
+module.exports.movieTrend = function(title, releaseDate) {
+	var options = {
+		keyword: [title, 'movies'],
+		startTime: moment(releaseDate).add(-6,'months').toDate(),
+		endTime: moment(releaseDate).add(6,'months').toDate()
+	}
+	return googleTrends.interestOverTime(options);
+}
 // argument: options object
 // returns a promise with a JSON string result
 // options has form:
