@@ -1,12 +1,12 @@
 module.exports.data = {
     _id: 123124987,
     title: "Beauty and the Beast",
-    product_company: "TBD",
+    production_company: "TBD",
     genre: ['children'],
     images: [],
     revenue: 1238764,
     estimated_profit: 1264,
-    releast_date: '20171003',
+    release_date: '20171003',
     longitudinal_data: [
         {
           formattedAxisTime: 'Feb 5',
