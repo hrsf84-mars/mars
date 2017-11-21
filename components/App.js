@@ -14,10 +14,12 @@ class App extends React.Component {
       first_movie_query: '',
       second_movie_query: ''
     }
+
     this.handleFirstQuery = this.handleFirstQuery.bind(this);
     this.handleSecondQuery = this.handleSecondQuery.bind(this);
 
-    // set this binding for submitting
+    this.handleFirstSubmit = this.handleFirstSubmit.bind(this);
+    this.handleSecondSubmit = this.handleSecondSubmit.bind(this);
   }
 
   handleFirstQuery(e) {
@@ -28,7 +30,17 @@ class App extends React.Component {
     this.setState({second_movie_query: e.target.value});
   }
 
-  // handle submit when submiting search
+  handleFirstSubmit(e) {
+    // Replace with call to server
+    console.log(this.state.first_movie_query, 'was sent to the server');
+    e.preventDefault();
+  }
+
+  handleSecondSubmit(e) {
+    // Replace with call to server
+    console.log(this.state.second_movie_query, 'was sent to the server');
+    e.preventDefault();
+  }
 
 
   // To do:
@@ -42,19 +54,13 @@ class App extends React.Component {
 
         <div id="graph">
           <div id="search">
-            <form>
-              <label>
-                Find your first movie: 
-              </label>
+            <form onSubmit={this.handleFirstSubmit}>
               <input type="text" value={this.state.first_movie_query} onChange={this.handleFirstQuery} />
-              <input type="submit" value="Submit" />
+              <input type="submit" value="Find First Movie" />
             </form>
-            <form>
-              <label>
-                Find your second movie: 
-              </label>
+            <form onSubmit={this.handleSecondSubmit}>
               <input type="text" value={this.state.second_movie_query} onChange={this.handleSecondQuery} />
-              <input type="submit" value="Submit" />
+              <input type="submit" value="Find Second Movie" />
             </form>
           </div>
 
