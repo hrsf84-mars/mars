@@ -33,12 +33,20 @@ class App extends React.Component {
   handleFirstSubmit(e) {
     // Replace with call to server
     console.log(this.state.first_movie_query, 'was sent to the server');
+    // if the server sends back an object in its response
+      // setState of primary_movie to that object
+      // (?) update the comparison_obj
+    // else, give the user an error
     e.preventDefault();
   }
 
   handleSecondSubmit(e) {
     // Replace with call to server
     console.log(this.state.second_movie_query, 'was sent to the server');
+    // if the server sends back an object in its response
+      // setState of secondary_movie to that object
+      // (?) update the comparison_obj
+    // else, give the user an error
     e.preventDefault();
   }
 
