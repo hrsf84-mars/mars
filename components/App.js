@@ -1,6 +1,10 @@
 import React from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Label } from 'recharts';
 import example from './exampleData.js';
+import Graph from './Graph.js';
+import Search from './Search.js';
+import Table from './Table.js';
+
 const data = example.data;
 
 class App extends React.Component {
@@ -82,22 +86,7 @@ class App extends React.Component {
           </XAxis>
           <YAxis label={{ value: 'Search Volume', angle: -90, position: 'insideLeft' }} />
           </LineChart>
-
-          <div id="metrics">
-            <div id="first_movie">
-              <h3>{this.state.primary_movie.title}</h3>
-              <p>Revenue: {this.state.primary_movie.revenue}</p>
-              <p>Release Date: {this.state.primary_movie.release_date}</p>
-              <p>Production Company: {this.state.primary_movie.production_company}</p>
-            </div>
-            <br></br><br></br>
-            <div id="second_movie">
-              <h3>{this.state.secondary_movie.title}</h3>
-              <p>Revenue: {this.state.secondary_movie.revenue}</p>
-              <p>Release Date: {this.state.secondary_movie.release_date}</p>
-              <p>Production Company: {this.state.secondary_movie.production_company}</p>
-            </div>
-          </div>
+          <Table primary_movie={this.state.primary_movie} secondary_movie={this.state.secondary_movie} />
         </div>
       </div>
     );
