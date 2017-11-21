@@ -8,7 +8,7 @@ class App extends React.Component {
     super();
     this.state = {
       primary_movie: data,
-      secondary_movie: {}, // this is where we will store data to graph a second line graph
+      secondary_movie: data, // this is where we will store data to graph a second line graph
       comparison_obj: {},
       is_comparing: false,
       first_movie_query: '',
@@ -23,6 +23,11 @@ class App extends React.Component {
 
   // handle submit when submiting search
 
+
+  // To do:
+    // Break into modular components
+    // Refactor table section to be an actual table
+    // Make some visual components conditional on secondary movie being present
   render() {
     return (
       <div>
@@ -40,7 +45,7 @@ class App extends React.Component {
             </label>
           </form>
 
-          <h1 id="title">{this.state.primary_movie.title}</h1>
+          <h1 id="title">Comparing {this.state.primary_movie.title} and {this.state.secondary_movie.title}</h1>
 
           <LineChart width={800} height={400} data={data.longitudinal_data}>
           <Line type="monotone" dataKey="google_trends_vol" stroke="#8884d8" />
@@ -50,6 +55,22 @@ class App extends React.Component {
           </XAxis>
           <YAxis label={{ value: 'Search Volume', angle: -90, position: 'insideLeft' }} />
           </LineChart>
+
+          <div id="metrics">
+            <div id="first_movie">
+              <h3>{this.state.primary_movie.title}</h3>
+              <p>Revenue: {this.state.primary_movie.revenue}</p>
+              <p>Release Date: {this.state.primary_movie.release_date}</p>
+              <p>Production Company: {this.state.primary_movie.production_company}</p>
+            </div>
+            <br></br><br></br>
+            <div id="second_movie">
+              <h3>{this.state.secondary_movie.title}</h3>
+              <p>Revenue: {this.state.secondary_movie.revenue}</p>
+              <p>Release Date: {this.state.secondary_movie.release_date}</p>
+              <p>Production Company: {this.state.secondary_movie.production_company}</p>
+            </div>
+          </div>
         </div>
       </div>
     );
