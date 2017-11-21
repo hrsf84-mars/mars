@@ -16,6 +16,7 @@
     "express": "^4.16.2",
     "google-trends-api": "^4.3.0",
     "moment": "^2.19.2",
+    "mongoose": "^4.13.4",
     "path": "^0.12.7",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
