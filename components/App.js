@@ -9,7 +9,10 @@ class App extends React.Component {
     this.state = {
       primary_movie: data,
       secondary_movie: {}, // this is where we will store data to graph a second line graph
-      query: ''
+      comparison_obj: {},
+      is_comparing: false,
+      first_movie_query: '',
+      second_movie_query: ''
     }
 
     // set this binding for onChange
@@ -28,9 +31,12 @@ class App extends React.Component {
         <div id="graph">
           <form>
             <label>
-              Search for a movie in the last five years: 
+              <input type="submit" value="Find First Movie" />
               <input type="text" value="text" />
-              <input type="submit" value="Submit" />
+              <br></br>
+              <br></br>
+              <input type="submit" value="Find Second Movie" />
+              <input type="text" value="text" />
             </label>
           </form>
 
