@@ -1,19 +1,15 @@
 import React from 'react';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Label } from 'recharts';
-import example from './exampleData.js';
 import Graph from './Graph.js';
-import Search from './Search.js';
 import Table from './Table.js';
-
-const data = example.data;
+import primaryTestData from './primaryTestData.js';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      primary_movie: data,
-      secondary_movie: data, // this is where we will store data to graph a second line graph
-      comparison_obj: {},
+      primary_movie: primaryTestData,
+      secondary_movie: data,
+      comparison_obj: data,
       is_comparing: false,
       first_movie_query: '',
       second_movie_query: ''
@@ -63,31 +59,24 @@ class App extends React.Component {
     return (
       <div>
         <h1>Cliff on Mars</h1>
-
-        <div id="graph">
-          <div id="search">
-            <form onSubmit={this.handleFirstSubmit}>
-              <input type="text" value={this.state.first_movie_query} onChange={this.handleFirstQuery} />
-              <input type="submit" value="Find First Movie" />
-            </form>
-            <form onSubmit={this.handleSecondSubmit}>
-              <input type="text" value={this.state.second_movie_query} onChange={this.handleSecondQuery} />
-              <input type="submit" value="Find Second Movie" />
-            </form>
-          </div>
-
-          <h1 id="title">Comparing {this.state.primary_movie.title} and {this.state.secondary_movie.title}</h1>
-
-          <LineChart width={800} height={400} data={data.longitudinal_data}>
-          <Line type="monotone" dataKey="google_trends_vol" stroke="#8884d8" />
-          <CartesianGrid stroke="#ccc" />
-          <XAxis dataKey="formattedAxisTime">
-            <Label value="Weeks after release date" offset={0} position="insideBottom" />
-          </XAxis>
-          <YAxis label={{ value: 'Search Volume', angle: -90, position: 'insideLeft' }} />
-          </LineChart>
-          <Table primary_movie={this.state.primary_movie} secondary_movie={this.state.secondary_movie} />
+        
+        <div id="search">
+          <form onSubmit={this.handleFirstSubmit}>
+            <input type="text" value={this.state.first_movie_query} onChange={this.handleFirstQuery} />
+            <input type="submit" value="Find First Movie" />
+          </form>
+          <form onSubmit={this.handleSecondSubmit}>
+            <input type="text" value={this.state.second_movie_query} onChange={this.handleSecondQuery} />
+            <input type="submit" value="Find Second Movie" />
+          </form>
         </div>
+
+        <h1 id="title">Comparing {this.state.primary_movie.title} and {this.state.secondary_movie.title}</h1>
+        
+        <Graph data={this.state.comparison_obj} />
+
+        <Table primary_movie={this.state.primary_movie} secondary_movie={this.state.secondary_movie} />
+
       </div>
     );
   }
