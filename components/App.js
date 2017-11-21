@@ -2,14 +2,16 @@ import React from 'react';
 import Graph from './Graph.js';
 import Table from './Table.js';
 import primaryTestData from './primaryTestData.js';
+import secondaryTestData from './secondaryTestData.js';
+import comparisonTestData from './comparisonTestData.js';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      primary_movie: primaryTestData,
-      secondary_movie: data,
-      comparison_obj: data,
+      primary_movie: primaryTestData.data,
+      secondary_movie: secondaryTestData.data,
+      comparison_obj: comparisonTestData.data,
       is_comparing: false,
       first_movie_query: '',
       second_movie_query: ''
