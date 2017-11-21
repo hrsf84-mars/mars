@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const tmdb = require('./utils/tmdb');
+const Movie = require('./db/Movie');
 
 app.use(express.static('public'));
 
@@ -16,32 +17,35 @@ app.get('/search/:movie', (req, res) => {
   });
 });
 
-app.get('/movie/:tmdbId', (req, res) => {
+app.get('/movie/:tmdbId', async (req, res) => {
   const tmdbId = req.params.tmdbId;
 
-  // fetch/check db
+  try {
+    const movie = await Movie.findOne({tmdbId});
+    if (movie) {
+      return res.send(movie);
+    }
 
-  const results = {tmdbId};
+    const data = [await tmdb.fetchMovieById(tmdbId), await tmdb.fetchImageById(tmdbId)];
+    const movieData = data[0];
+    const images = data[1];
 
-  const dataProm = tmdb.fetchMovieById(tmdbId).then(data => {
-    // results.data = data;
-    results.title = data.title;
-    results.productionCompanies = data.production_companies.map(company => company.name);
-    results.genres = data.genres.map(genre => genre.name);
-    results.budget = data.budget;
-    results.revenue = data.revenue;
+    const results = {tmdbId};
+    results.title = movieData.title;
+    results.productionCompanies = movieData.production_companies.map(company => company.name);
+    results.genres = movieData.genres.map(genre => genre.name);
+    results.budget = movieData.budget;
+    results.revenue = movieData.revenue;
     // resutlts.estimatedProfit =
-    results.releaseDate = data.releaseDate;
-  });
-
-  const imgProm = tmdb.fetchImageById(tmdbId).then(images => {
+    results.releaseDate = movieData.releaseDate;
     results.images = images;
-  });
-
-  Promise.all([dataProm, imgProm]).then(() => {
-    // store results into db
+    
+    const movieDoc = new Movie(results);
+    await movieDoc.save();
     res.send(results);
-  });
+  } catch (err) {
+    res.status(400).send(err);
+  }
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
