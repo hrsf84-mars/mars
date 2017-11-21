@@ -14,12 +14,19 @@ class App extends React.Component {
       first_movie_query: '',
       second_movie_query: ''
     }
+    this.handleFirstQuery = this.handleFirstQuery.bind(this);
+    this.handleSecondQuery = this.handleSecondQuery.bind(this);
 
-    // set this binding for onChange
     // set this binding for submitting
   }
 
-  // handle change when typing in search box
+  handleFirstQuery(e) {
+    this.setState({first_movie_query: e.target.value});
+  }
+
+  handleSecondQuery(e) {
+    this.setState({second_movie_query: e.target.value});
+  }
 
   // handle submit when submiting search
 
@@ -34,16 +41,22 @@ class App extends React.Component {
         <h1>Cliff on Mars</h1>
 
         <div id="graph">
-          <form>
-            <label>
-              <input type="submit" value="Find First Movie" />
-              <input type="text" value="text" />
-              <br></br>
-              <br></br>
-              <input type="submit" value="Find Second Movie" />
-              <input type="text" value="text" />
-            </label>
-          </form>
+          <div id="search">
+            <form>
+              <label>
+                Find your first movie: 
+              </label>
+              <input type="text" value={this.state.first_movie_query} onChange={this.handleFirstQuery} />
+              <input type="submit" value="Submit" />
+            </form>
+            <form>
+              <label>
+                Find your second movie: 
+              </label>
+              <input type="text" value={this.state.second_movie_query} onChange={this.handleSecondQuery} />
+              <input type="submit" value="Submit" />
+            </form>
+          </div>
 
           <h1 id="title">Comparing {this.state.primary_movie.title} and {this.state.secondary_movie.title}</h1>
 
