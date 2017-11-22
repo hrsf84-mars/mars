@@ -83,8 +83,8 @@ class App extends React.Component {
     const cv = this.state.graphing_obj.longitudinal_data;
     const pm = this.state.primary_movie.longitudinal_data;
     const sm = this.state.secondary_movie.longitudinal_data;
+    
     if (!buildWithBoth) {
-      console.log('here we are');
       this.setState({graphing_obj: {
           longitudinal_data: [
             {formattedAxis: cv[0].formattedAxisTime, primary_google_trends_vol: pm[0].google_trends_vol},

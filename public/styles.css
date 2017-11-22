@@ -1,3 +1,7 @@
 body {
   text-align: center;
 }
+
+.recharts-wrapper {
+  margin: 0 auto;
+}
