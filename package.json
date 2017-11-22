@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node app",
     "test": "mocha specs --recursive",
-    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
+    "heroku-postbuild": "npm install --only=dev --dev && webpack -p --config ./webpack.config.js --progress"
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -21,16 +21,17 @@
     "path": "^0.12.7",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
-    "recharts": "^1.0.0-beta.1"
+    "recharts": "^1.0.0-beta.1",
+    "webpack": "^3.8.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.7.5",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "babel-register": "^6.7.2",
+    "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "mocha": "^4.0.1"
