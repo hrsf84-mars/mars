@@ -1,6 +1,6 @@
 const express = require('express');
 const tmdb = require('./utils/tmdb');
-const {movieTrend} = require('./utils/trendFetch');
+const { movieTrend } = require('./utils/trendFetch');
 const Movie = require('./db/Movie');
 
 const app = express();
@@ -14,16 +14,16 @@ app.get('/', (req, res) => {
 });
 
 app.get('/search/:movie', (req, res) => {
-  tmdb.searchMoviesByName(req.params.movie).then(data => {
+  tmdb.searchMoviesByName(req.params.movie).then((data) => {
     res.send(data);
   });
 });
 
 app.get('/movie/:tmdbId', async (req, res) => {
-  const tmdbId = req.params.tmdbId;
+  const { tmdbId } = req.params;
 
   try {
-    const movie = await Movie.findOne({tmdbId});
+    const movie = await Movie.findOne({ tmdbId });
     if (movie) {
       return res.send(movie);
     }
@@ -32,7 +32,7 @@ app.get('/movie/:tmdbId', async (req, res) => {
     const movieData = data[0];
     const images = data[1];
 
-    const results = {tmdbId};
+    const results = { tmdbId };
     results.title = movieData.title;
     results.productionCompanies = movieData.production_companies.map(company => company.name);
     results.genres = movieData.genres.map(genre => genre.name);
@@ -41,16 +41,16 @@ app.get('/movie/:tmdbId', async (req, res) => {
     // resutlts.estimatedProfit =
     results.releaseDate = movieData.release_date;
     results.images = images;
-    
+
     const trendData = await movieTrend(results.title, results.releaseDate);
-    const timelineData = JSON.parse(trendData).default.timelineData;
+    const { timelineData } = JSON.parse(trendData).default;
     results.trendData = timelineData;
-    
+
     const movieDoc = new Movie(results);
     await movieDoc.save();
-    res.send(results);
+    return res.send(results);
   } catch (err) {
-    res.status(400).send(err);
+    return res.status(400).send(err);
   }
 });
 
