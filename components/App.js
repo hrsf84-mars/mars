@@ -12,7 +12,7 @@ class App extends React.Component {
       primary_movie: primaryTestData.data,
       secondary_movie: secondaryTestData.data,
       comparison_obj: comparisonTestData.data,
-      is_comparing: false,
+      is_secondary: false,
       first_movie_query: '',
       second_movie_query: ''
     }
@@ -43,12 +43,16 @@ class App extends React.Component {
   }
 
   handleSecondSubmit(e) {
-    // Replace with call to server
-    console.log(this.state.second_movie_query, 'was sent to the server');
-    // if the server sends back an object in its response
-      // setState of secondary_movie to that object
-      // (?) update the comparison_obj
-    // else, give the user an error
+    if (!this.state.is_secondary) {
+      this.setState({is_secondary: true});
+    } else {
+      // Replace with call to server
+      console.log(this.state.second_movie_query, 'was sent to the server');
+      // if the server sends back an object in its response
+        // setState of secondary_movie to that object
+        // (?) update the comparison_obj
+      // else, give the user an error
+    }
     e.preventDefault();
   }
 
@@ -68,14 +72,14 @@ class App extends React.Component {
             <input type="submit" value="Find First Movie" />
           </form>
           <form onSubmit={this.handleSecondSubmit}>
-            <input type="text" value={this.state.second_movie_query} onChange={this.handleSecondQuery} />
+            {this.state.is_secondary && <input type="text" value={this.state.second_movie_query} onChange={this.handleSecondQuery} />}
             <input type="submit" value="Find Second Movie" />
           </form>
         </div>
 
         <h1 id="title">Comparing {this.state.primary_movie.title} and {this.state.secondary_movie.title}</h1>
         
-        <Graph data={this.state.comparison_obj} />
+        <Graph data={this.state.comparison_obj} secondary_movie={this.state.comparison_obj}/>
 
         <Table primary_movie={this.state.primary_movie} secondary_movie={this.state.secondary_movie} />
 
