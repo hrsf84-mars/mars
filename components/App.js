@@ -3,13 +3,13 @@ import Axios from 'axios';
 import Graph from './Graph.js';
 import PrimaryTable from './PrimaryTable.js';
 import SecondaryTable from './SecondaryTable.js';
+import Title from './Title.js';
 
 import comparisonTestData from './_comparisonTestData.js';
 import primaryTestData from './_primaryTestData.js';
 import secondaryTestData from './_secondaryTestData.js';
 
 // To do:
-  // Make some visual components conditional on secondary movie being present
   // Refactor table section to be an actual table
 
 class App extends React.Component {
@@ -30,24 +30,7 @@ class App extends React.Component {
     this.handleFirstSubmit = this.handleFirstSubmit.bind(this);
     this.handleSecondSubmit = this.handleSecondSubmit.bind(this);
 
-    this.setPrimary = this.setPrimary.bind(this);
-    this.setSecondary = this.setSecondary.bind(this);
-
     this.setGraphingObj = this.setGraphingObj.bind(this);
-  }
-
-  setPrimary(movieObj) {
-    this.setState({graphing_obj: {
-      primary_movie: movieObj
-      }
-    });
-  }
-
-  setSecondary(movieObj) {
-    this.setState({graphing_obj: {
-      secondary_movie: movieObj
-      }
-    });
   }
 
   handleFirstQuery(e) {
@@ -58,39 +41,40 @@ class App extends React.Component {
     this.setState({second_movie_query: e.target.value});
   }
 
+  // Uncomment below AND remove this.setGraphingObj(false) to test server
   handleFirstSubmit(e) {
     this.setGraphingObj(false);
-    Axios.post('/', {search: this.state.first_movie_query})
-      .then(function(response) {
-        this.setPrimary(response);
-      })
-      .then(function() {
-        this.setGraphingObj(false);
-      })
-      .catch(function(error) {
-        console.log(error);
-        alert('It looks like we couldn\'t find', this.state.first_movie_query);
-      });
+    // Axios.post('/', {search: this.state.first_movie_query})
+    //   .then(function(response) {
+    //     this.setPrimary(response);
+    //   })
+    //   .then(function() {
+    //     this.setGraphingObj(false);
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //     alert('It looks like we couldn\'t find', this.state.first_movie_query);
+    //   });
     e.preventDefault();
   }
 
+  // Uncomment below AND remove this.setGraphingObj(true) to test server
   handleSecondSubmit(e) {
     if (!this.state.is_secondary) {
       this.setState({is_secondary: true});
     } else {
       this.setGraphingObj(true);
-      this.setGraphingObj();
-      Axios.post('/', {search: this.state.second_movie_query})
-        .then(function(response) {
-          this.setSecondary(response);
-        })
-        .then(function() {
-          this.setGraphingObj();
-        })
-        .catch(function(error) {
-          console.log(error);
-          alert('It looks like we couldn\'t find', this.state.second_movie_query);
-        });
+      // Axios.post('/', {search: this.state.second_movie_query})
+      //   .then(function(response) {
+      //     this.setSecondary(response);
+      //   })
+      //   .then(function() {
+      //     this.setGraphingObj(true);
+      //   })
+      //   .catch(function(error) {
+      //     console.log(error);
+      //     alert('It looks like we couldn\'t find', this.state.second_movie_query);
+      //   });
     }
     e.preventDefault();
   }
@@ -133,8 +117,6 @@ class App extends React.Component {
     }
   }
 
-  // To do:
-    // Make Title section show secondary movie title conditional on it existing
   render() {
     return (
       <div>
@@ -145,13 +127,14 @@ class App extends React.Component {
             <input type="text" value={this.state.first_movie_query} onChange={this.handleFirstQuery} />
             <input type="submit" value="Find First Movie" />
           </form>
+
           <form onSubmit={this.handleSecondSubmit}>
             {this.state.is_secondary && <input type="text" value={this.state.second_movie_query} onChange={this.handleSecondQuery} />}
             <input type="submit" value="Find Second Movie" />
           </form>
         </div>
 
-        <h1 id="title">{this.state.primary_movie.title} and {this.state.secondary_movie.title}</h1>
+        {this.state.is_secondary ? <Title primary_movie={this.state.primary_movie} secondary_movie={this.state.secondary_movie} /> : <h1>{this.state.primary_movie.title}</h1>}
         
         <Graph is_secondary={this.state.is_secondary} data={this.state.graphing_obj.longitudinal_data} />
 
