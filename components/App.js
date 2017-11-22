@@ -10,6 +10,7 @@ import primaryTestData from './_primaryTestData.js';
 import secondaryTestData from './_secondaryTestData.js';
 
 // To do:
+  // Make the Axios GET requests work as expected
   // Refactor table section to be an actual table
 
 class App extends React.Component {
@@ -27,10 +28,23 @@ class App extends React.Component {
     this.handleFirstQuery = this.handleFirstQuery.bind(this);
     this.handleSecondQuery = this.handleSecondQuery.bind(this);
 
+    this.setPrimary = this.setPrimary.bind(this);
+    this.setSecondary = this.setSecondary.bind(this);
+
     this.handleFirstSubmit = this.handleFirstSubmit.bind(this);
     this.handleSecondSubmit = this.handleSecondSubmit.bind(this);
 
     this.setGraphingObj = this.setGraphingObj.bind(this);
+
+    this.axiosGet = Axios.get.bind(this);
+  }
+
+  setPrimary(movieObj) {
+    this.setState({primary_movie: movieObj});
+  }
+
+  setSecondary(movieObj) {
+    this.setState({secondary_movie: movieObj});
   }
 
   handleFirstQuery(e) {
@@ -41,51 +55,49 @@ class App extends React.Component {
     this.setState({second_movie_query: e.target.value});
   }
 
-  // Uncomment below AND remove this.setGraphingObj(false) to test server
   handleFirstSubmit(e) {
-    this.setGraphingObj(false);
-    // Axios.post('/', {search: this.state.first_movie_query})
-    //   .then(function(response) {
-    //     this.setPrimary(response);
-    //   })
-    //   .then(function() {
-    //     this.setGraphingObj(false);
-    //   })
-    //   .catch(function(error) {
-    //     console.log(error);
-    //     alert('It looks like we couldn\'t find', this.state.first_movie_query);
-    //   });
+    let context = this;
+    this.axiosGet(`/search/${this.state.first_movie_query}`)
+      .then(function(response) {
+        console.log(response.data.results[0]);
+        context.setPrimary(response.data.results[0]);
+      })
+      .then(function() {
+        context.setGraphingObj(false);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     e.preventDefault();
   }
 
-  // Uncomment below AND remove this.setGraphingObj(true) to test server
   handleSecondSubmit(e) {
     if (!this.state.is_secondary) {
       this.setState({is_secondary: true});
     } else {
-      this.setGraphingObj(true);
-      // Axios.post('/', {search: this.state.second_movie_query})
-      //   .then(function(response) {
-      //     this.setSecondary(response);
-      //   })
-      //   .then(function() {
-      //     this.setGraphingObj(true);
-      //   })
-      //   .catch(function(error) {
-      //     console.log(error);
-      //     alert('It looks like we couldn\'t find', this.state.second_movie_query);
-      //   });
+      let context = this;
+      Axios.get(`/search/${this.state.second_movie_query}`)
+        .then(function(response) {
+          context.setSecondary(response.data.results[0]);
+        })
+        .then(function() {
+          context.setGraphingObj(true);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
     e.preventDefault();
   }
 
   setGraphingObj(buildWithBoth) {
-    const cv = this.state.graphing_obj.longitudinal_data;
-    const pm = this.state.primary_movie.longitudinal_data;
-    const sm = this.state.secondary_movie.longitudinal_data;
+    let context = this;
+    const cv = context.state.graphing_obj.longitudinal_data;
+    const pm = context.state.primary_movie.longitudinal_data;
+    const sm = context.state.secondary_movie.longitudinal_data;
     
     if (!buildWithBoth) {
-      this.setState({graphing_obj: {
+      context.setState({graphing_obj: {
           longitudinal_data: [
             {formattedAxis: cv[0].formattedAxisTime, primary_google_trends_vol: pm[0].google_trends_vol},
             {formattedAxis: cv[1].formattedAxisTime, primary_google_trends_vol: pm[1].google_trends_vol},
@@ -100,7 +112,7 @@ class App extends React.Component {
         }
       });
     } else {
-      this.setState({graphing_obj: {
+      context.setState({graphing_obj: {
           longitudinal_data: [
             {formattedAxis: cv[0].formattedAxisTime, primary_google_trends_vol: pm[0].google_trends_vol, secondary_google_trends_vol: sm[0].google_trends_vol},
             {formattedAxis: cv[1].formattedAxisTime, primary_google_trends_vol: pm[1].google_trends_vol, secondary_google_trends_vol: sm[1].google_trends_vol},
