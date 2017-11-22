@@ -8,7 +8,7 @@
     "node": "<=8.9.0"
   },
   "scripts": {
-    "start": "node app",
+    "start": "webpack && node app",
     "test": "mocha specs --recursive"
   },
   "dependencies": {
