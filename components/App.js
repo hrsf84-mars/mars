@@ -9,8 +9,6 @@ import primaryTestData from './_primaryTestData.js';
 import secondaryTestData from './_secondaryTestData.js';
 
 // To do:
-  // Adapt helper to work with in a three-object world
-  // Make line conditionally render OR render diferent Graph types based on whether there is data for two obj
   // Make some visual components conditional on secondary movie being present
   // Refactor table section to be an actual table
 
@@ -61,12 +59,13 @@ class App extends React.Component {
   }
 
   handleFirstSubmit(e) {
+    this.setGraphingObj(false);
     Axios.post('/', {search: this.state.first_movie_query})
       .then(function(response) {
         this.setPrimary(response);
       })
       .then(function() {
-        this.setGraphingObj();
+        this.setGraphingObj(false);
       })
       .catch(function(error) {
         console.log(error);
@@ -79,6 +78,7 @@ class App extends React.Component {
     if (!this.state.is_secondary) {
       this.setState({is_secondary: true});
     } else {
+      this.setGraphingObj(true);
       this.setGraphingObj();
       Axios.post('/', {search: this.state.second_movie_query})
         .then(function(response) {
@@ -95,26 +95,42 @@ class App extends React.Component {
     e.preventDefault();
   }
 
-  // This should be adapted for the first time you search for a primary movie
-  setGraphingObj() {
+  setGraphingObj(buildWithBoth) {
     const cv = this.state.graphing_obj.longitudinal_data;
     const pm = this.state.primary_movie.longitudinal_data;
     const sm = this.state.secondary_movie.longitudinal_data;
-    
-    this.setState({graphing_obj: {
-        longitudinal_data: [
-          {formattedAxis: cv[0].formattedAxisTime, primary_google_trends_vol: pm[0].google_trends_vol, secondary_google_trends_vol: sm[0].google_trends_vol},
-          {formattedAxis: cv[1].formattedAxisTime, primary_google_trends_vol: pm[1].google_trends_vol, secondary_google_trends_vol: sm[1].google_trends_vol},
-          {formattedAxis: cv[2].formattedAxisTime, primary_google_trends_vol: pm[2].google_trends_vol, secondary_google_trends_vol: sm[2].google_trends_vol},
-          {formattedAxis: cv[3].formattedAxisTime, primary_google_trends_vol: pm[3].google_trends_vol, secondary_google_trends_vol: sm[3].google_trends_vol},
-          {formattedAxis: cv[4].formattedAxisTime, primary_google_trends_vol: pm[4].google_trends_vol, secondary_google_trends_vol: sm[4].google_trends_vol},
-          {formattedAxis: cv[5].formattedAxisTime, primary_google_trends_vol: pm[5].google_trends_vol, secondary_google_trends_vol: sm[5].google_trends_vol},
-          {formattedAxis: cv[6].formattedAxisTime, primary_google_trends_vol: pm[6].google_trends_vol, secondary_google_trends_vol: sm[6].google_trends_vol},
-          {formattedAxis: cv[7].formattedAxisTime, primary_google_trends_vol: pm[7].google_trends_vol, secondary_google_trends_vol: sm[7].google_trends_vol},
-          {formattedAxis: cv[8].formattedAxisTime, primary_google_trends_vol: pm[8].google_trends_vol, secondary_google_trends_vol: sm[8].google_trends_vol}
-        ]
-      }
-    });
+    if (!buildWithBoth) {
+      console.log('here we are');
+      this.setState({graphing_obj: {
+          longitudinal_data: [
+            {formattedAxis: cv[0].formattedAxisTime, primary_google_trends_vol: pm[0].google_trends_vol},
+            {formattedAxis: cv[1].formattedAxisTime, primary_google_trends_vol: pm[1].google_trends_vol},
+            {formattedAxis: cv[2].formattedAxisTime, primary_google_trends_vol: pm[2].google_trends_vol},
+            {formattedAxis: cv[3].formattedAxisTime, primary_google_trends_vol: pm[3].google_trends_vol},
+            {formattedAxis: cv[4].formattedAxisTime, primary_google_trends_vol: pm[4].google_trends_vol},
+            {formattedAxis: cv[5].formattedAxisTime, primary_google_trends_vol: pm[5].google_trends_vol},
+            {formattedAxis: cv[6].formattedAxisTime, primary_google_trends_vol: pm[6].google_trends_vol},
+            {formattedAxis: cv[7].formattedAxisTime, primary_google_trends_vol: pm[7].google_trends_vol},
+            {formattedAxis: cv[8].formattedAxisTime, primary_google_trends_vol: pm[8].google_trends_vol}
+          ]
+        }
+      });
+    } else {
+      this.setState({graphing_obj: {
+          longitudinal_data: [
+            {formattedAxis: cv[0].formattedAxisTime, primary_google_trends_vol: pm[0].google_trends_vol, secondary_google_trends_vol: sm[0].google_trends_vol},
+            {formattedAxis: cv[1].formattedAxisTime, primary_google_trends_vol: pm[1].google_trends_vol, secondary_google_trends_vol: sm[1].google_trends_vol},
+            {formattedAxis: cv[2].formattedAxisTime, primary_google_trends_vol: pm[2].google_trends_vol, secondary_google_trends_vol: sm[2].google_trends_vol},
+            {formattedAxis: cv[3].formattedAxisTime, primary_google_trends_vol: pm[3].google_trends_vol, secondary_google_trends_vol: sm[3].google_trends_vol},
+            {formattedAxis: cv[4].formattedAxisTime, primary_google_trends_vol: pm[4].google_trends_vol, secondary_google_trends_vol: sm[4].google_trends_vol},
+            {formattedAxis: cv[5].formattedAxisTime, primary_google_trends_vol: pm[5].google_trends_vol, secondary_google_trends_vol: sm[5].google_trends_vol},
+            {formattedAxis: cv[6].formattedAxisTime, primary_google_trends_vol: pm[6].google_trends_vol, secondary_google_trends_vol: sm[6].google_trends_vol},
+            {formattedAxis: cv[7].formattedAxisTime, primary_google_trends_vol: pm[7].google_trends_vol, secondary_google_trends_vol: sm[7].google_trends_vol},
+            {formattedAxis: cv[8].formattedAxisTime, primary_google_trends_vol: pm[8].google_trends_vol, secondary_google_trends_vol: sm[8].google_trends_vol}
+          ]
+        }
+      });
+    }
   }
 
   // To do:
