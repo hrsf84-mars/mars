@@ -39,9 +39,9 @@ app.get('/movie/:tmdbId', async (req, res) => {
     results.budget = movieData.budget;
     results.revenue = movieData.revenue;
     // resutlts.estimatedProfit =
-    results.releaseDate = movieData.releaseDate;
+    results.releaseDate = movieData.release_date;
     results.images = images;
-
+    
     const trendData = await movieTrend(results.title, results.releaseDate);
     const timelineData = JSON.parse(trendData).default.timelineData;
     results.trendData = timelineData;
