@@ -5,21 +5,16 @@ import PrimaryTable from './PrimaryTable.js';
 import SecondaryTable from './SecondaryTable.js';
 import Title from './Title.js';
 
-import comparisonTestData from './_comparisonTestData.js';
-import primaryTestData from './_primaryTestData.js';
-import secondaryTestData from './_secondaryTestData.js';
-
 // To do:
-  // Make the Axios GET requests work as expected
   // Refactor table section to be an actual table
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      graphing_obj: comparisonTestData.data,
-      primary_movie: primaryTestData.data,
-      secondary_movie: secondaryTestData.data,
+      graphing_obj: {},
+      primary_movie: {},
+      secondary_movie: {},
       is_secondary: false,
       first_movie_query: '',
       second_movie_query: ''
@@ -90,6 +85,8 @@ class App extends React.Component {
     e.preventDefault();
   }
 
+
+  // need to change to 
   setGraphingObj(buildWithBoth) {
     let context = this;
     const cv = context.state.graphing_obj.longitudinal_data;
