@@ -1,7 +1,9 @@
 const express = require('express');
-const app = express();
 const tmdb = require('./utils/tmdb');
+const {movieTrend} = require('./utils/trendFetch');
 const Movie = require('./db/Movie');
+
+const app = express();
 
 app.use(express.static('public'));
 
@@ -39,6 +41,10 @@ app.get('/movie/:tmdbId', async (req, res) => {
     // resutlts.estimatedProfit =
     results.releaseDate = movieData.releaseDate;
     results.images = images;
+
+    const trendData = await movieTrend(results.title, results.releaseDate);
+    const timelineData = JSON.parse(trendData).default.timelineData;
+    results.trendData = timelineData;
     
     const movieDoc = new Movie(results);
     await movieDoc.save();

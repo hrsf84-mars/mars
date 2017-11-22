@@ -23,13 +23,17 @@ const movieSchema = new mongoose.Schema({
   releaseDate: Date,
   trendData: [{
     time: {
-      type: Date,
+      type: String,
       required: true,
     },
-    score: {
-      type: Number,
-      required: true,
+    formattedTime: {
+      type: String,
     },
+    formattedAxisTime: {
+      type: String,
+    },
+    value: [Number],
+    formattedValue: [String],
   }],
 });
 
