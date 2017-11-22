@@ -4,7 +4,9 @@ import Graph from './Graph.js';
 import PrimaryTable from './PrimaryTable.js';
 import SecondaryTable from './SecondaryTable.js';
 
-import comparisonTestData from './comparisonTestData.js';
+import comparisonTestData from './_comparisonTestData.js';
+import primaryTestData from './_primaryTestData.js';
+import secondaryTestData from './_secondaryTestData.js';
 
 // To do:
   // Make line conditionally render OR render diferent Graph types based on whether there is data for two obj
@@ -15,7 +17,9 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      comparison_obj: comparisonTestData.data,
+      graphing_obj: comparisonTestData.data,
+      primary_movie: primaryTestData.data,
+      secondary_movie: secondaryTestData.data,
       is_secondary: false,
       first_movie_query: '',
       second_movie_query: ''
@@ -34,14 +38,14 @@ class App extends React.Component {
   }
 
   setPrimary(movieObj) {
-    this.setState({comparison_obj: {
+    this.setState({graphing_obj: {
       primary_movie: movieObj
       }
     });
   }
 
   setSecondary(movieObj) {
-    this.setState({comparison_obj: {
+    this.setState({graphing_obj: {
       secondary_movie: movieObj
       }
     });
@@ -56,17 +60,18 @@ class App extends React.Component {
   }
 
   handleFirstSubmit(e) {
-    Axios.post('/', {search: this.state.first_movie_query})
-      .then(function(response) {
-        this.setPrimary(response);
-      })
-      .then(function() {
-        this.setLongitudinal('primary');
-      })
-      .catch(function(error) {
-        console.log(error);
-        alert('It looks like we couldn\'t find', this.state.first_movie_query);
-      });
+    this.setLongitudinal('primary');
+    // Axios.post('/', {search: this.state.first_movie_query})
+    //   .then(function(response) {
+    //     this.setPrimary(response);
+    //   })
+    //   .then(function() {
+    //     this.setLongitudinal('primary');
+    //   })
+    //   .catch(function(error) {
+    //     console.log(error);
+    //     alert('It looks like we couldn\'t find', this.state.first_movie_query);
+    //   });
     e.preventDefault();
   }
 
@@ -74,58 +79,36 @@ class App extends React.Component {
     if (!this.state.is_secondary) {
       this.setState({is_secondary: true});
     } else {
-      Axios.post('/', {search: this.state.second_movie_query})
-        .then(function(response) {
-          this.setSecondary(response);
-        })
-        .then(function() {
-          this.setLongitudinal('secondary');
-        })
-        .catch(function(error) {
-          console.log(error);
-          alert('It looks like we couldn\'t find', this.state.second_movie_query);
-        });
+      this.setLongitudinal('primary');
+      // Axios.post('/', {search: this.state.second_movie_query})
+      //   .then(function(response) {
+      //     this.setSecondary(response);
+      //   })
+      //   .then(function() {
+      //     this.setLongitudinal('secondary');
+      //   })
+      //   .catch(function(error) {
+      //     console.log(error);
+      //     alert('It looks like we couldn\'t find', this.state.second_movie_query);
+      //   });
     }
     e.preventDefault();
   }
 
   setLongitudinal(whichObj) {
     if (whichObj === 'primary') {
-      const longData = this.state.comparison_obj.primary_movie.longitudinal_data;
-
-      // this can be cleaned up if we can interate through arrays within setState.
-      this.setState({comparison_obj: {
-        longitudinal_data: [
-          {primary_google_trends_vol: longData[0].google_trends_vol},
-          {primary_google_trends_vol: longData[1].google_trends_vol},
-          {primary_google_trends_vol: longData[2].google_trends_vol},
-          {primary_google_trends_vol: longData[3].google_trends_vol},
-          {primary_google_trends_vol: longData[4].google_trends_vol},
-          {primary_google_trends_vol: longData[5].google_trends_vol},
-          {primary_google_trends_vol: longData[6].google_trends_vol},
-          {primary_google_trends_vol: longData[7].google_trends_vol},
-          {primary_google_trends_vol: longData[8].google_trends_vol}
-        ]
+      this.setState({graphing_obj: {
+        // to fill in
       }});
     } else if (whichObj === 'secondary') {
-      const longData = this.state.comparison_obj.secondary_movie.longitudinal_data;
-
-      this.setState({comparison_obj: {
-        longitudinal_data: [
-          {secondary_google_trends_vol: longData[0].google_trends_vol},
-          {secondary_google_trends_vol: longData[1].google_trends_vol},
-          {secondary_google_trends_vol: longData[2].google_trends_vol},
-          {secondary_google_trends_vol: longData[3].google_trends_vol},
-          {secondary_google_trends_vol: longData[4].google_trends_vol},
-          {secondary_google_trends_vol: longData[5].google_trends_vol},
-          {secondary_google_trends_vol: longData[6].google_trends_vol},
-          {secondary_google_trends_vol: longData[7].google_trends_vol},
-          {secondary_google_trends_vol: longData[8].google_trends_vol}
-        ]
+      this.setState({graphing_obj: {
+        // to fill in
       }});
     }
   }
 
+  // To do:
+    // Make Title section show secondary movie title conditional on it existing
   render() {
     return (
       <div>
@@ -142,13 +125,13 @@ class App extends React.Component {
           </form>
         </div>
 
-        <h1 id="title">{this.state.comparison_obj.primary_movie.title} and {this.state.comparison_obj.secondary_movie.title}</h1>
+        <h1 id="title">{this.state.primary_movie.title} and {this.state.secondary_movie.title}</h1>
         
-        <Graph is_secondary={this.state.is_secondary} data={this.state.comparison_obj.longitudinal_data} />
+        <Graph is_secondary={this.state.is_secondary} data={this.state.graphing_obj.longitudinal_data} />
 
-        <PrimaryTable primary_movie={this.state.comparison_obj.primary_movie} />
+        <PrimaryTable primary_movie={this.state.primary_movie} />
         <br></br><br></br>
-        {this.state.is_secondary && <SecondaryTable secondary_movie={this.state.comparison_obj.secondary_movie} />}
+        {this.state.is_secondary && <SecondaryTable secondary_movie={this.state.secondary_movie} />}
       </div>
     );
   }
