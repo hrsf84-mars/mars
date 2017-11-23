@@ -1,7 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import Graph from './Graph.jsx';
-import PrimaryTable from './PrimaryTable';
+import PrimaryTable from './PrimaryTable.jsx';
 import SecondaryTable from './SecondaryTable';
 import Title from './Title';
 
