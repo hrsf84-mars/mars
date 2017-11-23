@@ -1,6 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
-import Graph from './Graph';
+import Graph from './Graph.jsx';
 import PrimaryTable from './PrimaryTable';
 import SecondaryTable from './SecondaryTable';
 import Title from './Title';
