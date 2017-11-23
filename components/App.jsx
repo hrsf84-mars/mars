@@ -3,7 +3,7 @@ import Axios from 'axios';
 import Graph from './Graph.jsx';
 import PrimaryTable from './PrimaryTable.jsx';
 import SecondaryTable from './SecondaryTable.jsx';
-import Title from './Title';
+import Title from './Title.jsx';
 
 // To do:
 // Refactor table section to be an actual table
