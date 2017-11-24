@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import Graph from './Graph.jsx';
-import PrimaryTable from './PrimaryTable.jsx';
-import SecondaryTable from './SecondaryTable.jsx';
-import Title from './Title.jsx';
+import Graph from './Graph';
+import PrimaryTable from './PrimaryTable';
+import SecondaryTable from './SecondaryTable';
+import Title from './Title';
 
 // To do:
 // Refactor table section to be an actual table

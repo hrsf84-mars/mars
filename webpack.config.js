@@ -1,8 +1,10 @@
+const path = require('path');
+
 module.exports = {
-  entry: './public/index.js',
+  entry: './public/index.jsx',
   output: {
-    path: __dirname + '/public/',
-    filename: 'bundle.js'
+    path: path.join(__dirname, 'public'),
+    filename: 'bundle.js',
   },
   module: {
     loaders: [
@@ -11,9 +13,12 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['env', 'react']
-        }
-      }
-    ]
-  }
+          presets: ['env', 'react'],
+        },
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 };
