@@ -27,6 +27,7 @@ exports.fetchMovieById = id => {
   });
 };
 
+// Fetches images for 
 exports.fetchImageById = id => {
   const url = 'https://image.tmdb.org/t/p/w500';
   return axios.get(`http://api.themoviedb.org/3/movie/${id}/images`, {
