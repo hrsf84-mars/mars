@@ -1,5 +1,5 @@
 import React from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import Graph from './Graph.jsx';
 import PrimaryTable from './PrimaryTable.jsx';
 import SecondaryTable from './SecondaryTable.jsx';
@@ -30,107 +30,104 @@ class App extends React.Component {
     this.handleSecondSubmit = this.handleSecondSubmit.bind(this);
 
     this.setGraphingObj = this.setGraphingObj.bind(this);
-
-    this.axiosGet = Axios.get.bind(this);
   }
 
   setGraphingObj(buildWithBoth) {
-    const context = this;
-    const cv = context.state.graphing_obj.longitudinal_data;
-    const pm = context.state.primary_movie.longitudinal_data;
-    const sm = context.state.secondary_movie.longitudinal_data;
+    const cv = this.state.graphing_obj.longitudinal_data;
+    const pm = this.state.primary_movie.trendData;
+    const sm = this.state.secondary_movie.trendData;
 
     if (!buildWithBoth) {
-      context.setState({
+      this.setState({
         graphing_obj: {
           longitudinal_data: [
             {
-              formattedAxis: cv[0].formattedAxisTime,
-              primary_google_trends_vol: pm[0].google_trends_vol,
+              formattedAxis: pm[0].formattedAxisTime,
+              primary_google_trends_vol: pm[0].value,
             },
             {
-              formattedAxis: cv[1].formattedAxisTime,
-              primary_google_trends_vol: pm[1].google_trends_vol,
+              formattedAxis: pm[1].formattedAxisTime,
+              primary_google_trends_vol: pm[1].value,
             },
             {
-              formattedAxis: cv[2].formattedAxisTime,
-              primary_google_trends_vol: pm[2].google_trends_vol,
+              formattedAxis: pm[2].formattedAxisTime,
+              primary_google_trends_vol: pm[2].value,
             },
             {
-              formattedAxis: cv[3].formattedAxisTime,
-              primary_google_trends_vol: pm[3].google_trends_vol,
+              formattedAxis: pm[3].formattedAxisTime,
+              primary_google_trends_vol: pm[3].value,
             },
             {
-              formattedAxis: cv[4].formattedAxisTime,
-              primary_google_trends_vol: pm[4].google_trends_vol,
+              formattedAxis: pm[4].formattedAxisTime,
+              primary_google_trends_vol: pm[4].value,
             },
             {
-              formattedAxis: cv[5].formattedAxisTime,
-              primary_google_trends_vol: pm[5].google_trends_vol,
+              formattedAxis: pm[5].formattedAxisTime,
+              primary_google_trends_vol: pm[5].value,
             },
             {
-              formattedAxis: cv[6].formattedAxisTime,
-              primary_google_trends_vol: pm[6].google_trends_vol,
+              formattedAxis: pm[6].formattedAxisTime,
+              primary_google_trends_vol: pm[6].value,
             },
             {
-              formattedAxis: cv[7].formattedAxisTime,
-              primary_google_trends_vol: pm[7].google_trends_vol,
+              formattedAxis: pm[7].formattedAxisTime,
+              primary_google_trends_vol: pm[7].value,
             },
             {
-              formattedAxis: cv[8].formattedAxisTime,
-              primary_google_trends_vol: pm[8].google_trends_vol,
+              formattedAxis: pm[8].formattedAxisTime,
+              primary_google_trends_vol: pm[8].value,
             },
           ],
         },
       });
     } else {
-      context.setState({
+      this.setState({
         graphing_obj: {
           longitudinal_data: [
             {
               formattedAxis: cv[0].formattedAxisTime,
-              primary_google_trends_vol: pm[0].google_trends_vol,
-              secondary_google_trends_vol: sm[0].google_trends_vol,
+              primary_google_trends_vol: pm[0].value,
+              secondary_google_trends_vol: sm[0].value,
             },
             {
               formattedAxis: cv[1].formattedAxisTime,
-              primary_google_trends_vol: pm[1].google_trends_vol,
-              secondary_google_trends_vol: sm[1].google_trends_vol,
+              primary_google_trends_vol: pm[1].value,
+              secondary_google_trends_vol: sm[1].value,
             },
             {
               formattedAxis: cv[2].formattedAxisTime,
-              primary_google_trends_vol: pm[2].google_trends_vol,
-              secondary_google_trends_vol: sm[2].google_trends_vol,
+              primary_google_trends_vol: pm[2].value,
+              secondary_google_trends_vol: sm[2].value,
             },
             {
               formattedAxis: cv[3].formattedAxisTime,
-              primary_google_trends_vol: pm[3].google_trends_vol,
-              secondary_google_trends_vol: sm[3].google_trends_vol,
+              primary_google_trends_vol: pm[3].value,
+              secondary_google_trends_vol: sm[3].value,
             },
             {
               formattedAxis: cv[4].formattedAxisTime,
-              primary_google_trends_vol: pm[4].google_trends_vol,
-              secondary_google_trends_vol: sm[4].google_trends_vol,
+              primary_google_trends_vol: pm[4].value,
+              secondary_google_trends_vol: sm[4].value,
             },
             {
               formattedAxis: cv[5].formattedAxisTime,
-              primary_google_trends_vol: pm[5].google_trends_vol,
-              secondary_google_trends_vol: sm[5].google_trends_vol,
+              primary_google_trends_vol: pm[5].value,
+              secondary_google_trends_vol: sm[5].value,
             },
             {
               formattedAxis: cv[6].formattedAxisTime,
-              primary_google_trends_vol: pm[6].google_trends_vol,
-              secondary_google_trends_vol: sm[6].google_trends_vol,
+              primary_google_trends_vol: pm[6].value,
+              secondary_google_trends_vol: sm[6].value,
             },
             {
               formattedAxis: cv[7].formattedAxisTime,
-              primary_google_trends_vol: pm[7].google_trends_vol,
-              secondary_google_trends_vol: sm[7].google_trends_vol,
+              primary_google_trends_vol: pm[7].value,
+              secondary_google_trends_vol: sm[7].value,
             },
             {
               formattedAxis: cv[8].formattedAxisTime,
-              primary_google_trends_vol: pm[8].google_trends_vol,
-              secondary_google_trends_vol: sm[8].google_trends_vol,
+              primary_google_trends_vol: pm[8].value,
+              secondary_google_trends_vol: sm[8].value,
             },
           ],
         },
@@ -155,39 +152,26 @@ class App extends React.Component {
   }
 
   handleFirstSubmit(e) {
-    const context = this;
-    this.axiosGet(`/search/${this.state.first_movie_query}`)
-      .then((response) => {
-        context.setPrimary(response.data.results[0]);
-      })
-      .then(() => {
-        context.setGraphingObj(false);
-      })
-      .catch((error) => {
-        throw error;
-      });
     e.preventDefault();
+    axios.get(`/search/${this.state.first_movie_query}`)
+      .then(response => axios.get(`/movie/${response.data.results[0].id}`))
+      .then(response => this.setPrimary(response.data))
+      .then(() => this.setGraphingObj(false))
+      .catch(err => console.error(err));
   }
 
   handleSecondSubmit(e) {
     if (!this.state.is_secondary) {
       this.setState({ is_secondary: true });
     } else {
-      const context = this;
-      Axios.get(`/search/${this.state.second_movie_query}`)
-        .then((response) => {
-          context.setSecondary(response.data.results[0]);
-        })
-        .then(() => {
-          context.setGraphingObj(true);
-        })
-        .catch((error) => {
-          throw error;
-        });
+      axios.get(`/search/${this.state.second_movie_query}`)
+        .then(response => axios.get(`/movie/${response.data.results[0].id}`))
+        .then(response => this.setSecondary(response.data))
+        .then(() => this.setGraphingObj(true))
+        .catch(err => console.error(err));
     }
     e.preventDefault();
   }
-
 
   render() {
     return (

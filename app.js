@@ -44,12 +44,16 @@ app.get('/movie/:tmdbId', async (req, res) => {
 
     const trendData = await movieTrend(results.title, results.releaseDate);
     const { timelineData } = JSON.parse(trendData).default;
-    results.trendData = timelineData;
+    results.trendData = timelineData.map(trend => ({
+      formattedAxisTime: trend.formattedAxisTime,
+      value: (trend.value[0] / trend.value[1]) * 100,
+    }));
 
     const movieDoc = new Movie(results);
     await movieDoc.save();
     return res.send(results);
   } catch (err) {
+    console.log(err);
     return res.status(400).send(err);
   }
 });

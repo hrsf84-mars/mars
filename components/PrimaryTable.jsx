@@ -6,8 +6,8 @@ function PrimaryTable(props) {
       <div id="first_movie">
         <h3>{props.primary_movie.title}</h3>
         <p>Revenue: {props.primary_movie.revenue}</p>
-        <p>Release Date: {props.primary_movie.release_date}</p>
-        <p>Production Company: {props.primary_movie.production_company}</p>
+        <p>Release Date: {props.primary_movie.releaseDate}</p>
+        <p>Production Company: {props.primary_movie.productionCompanies}</p>
       </div>
     </div>
   );
