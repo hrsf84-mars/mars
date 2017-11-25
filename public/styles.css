@@ -2,6 +2,19 @@ body {
   text-align: center;
 }
 
+.input-group {
+  margin: 25px;
+}
+
 .recharts-wrapper {
   margin: 0 auto;
+}
+
+.movieButton {
+  width: 10%;
+  margin: 5px 5%;
+}
+
+button img {
+  width: 100%;
 }
