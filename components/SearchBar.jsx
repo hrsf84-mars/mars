@@ -16,7 +16,7 @@ export default class SearchBar extends Component {
   onFormSubmit(e) {
     e.preventDefault();
 
-    this.props.onMovieSearch(this.state.term);
+    this.props.onMovieSearch(this.state.term, this.props.type);
     this.setState({ term: '' });
   }
 
