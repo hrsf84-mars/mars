@@ -17,15 +17,6 @@ function combineTwoLines(primaryGraph, secondaryGraph) {
   });
 
   const res = [];
-  // for (let [ date, volArr ] of dateToVol) {
-  //   const primaryTrendVolume = volArr[0];
-  //   const secondaryTrendVolume = volArr[1];
-  //   res.push({
-  //     date,
-  //     primaryTrendVolume,
-  //     secondaryTrendVolume,
-  //   });
-  // }
 
   const mapIter = dateToVol.entries();
   let entry = mapIter.next().value;
@@ -43,6 +34,7 @@ function combineTwoLines(primaryGraph, secondaryGraph) {
 
   res.sort((a, b) => (new Date(a.date) <= new Date(b.date) ? -1 : 1));
   console.log(res);
+  
   return res;
 }
 
@@ -57,16 +49,6 @@ export default function (state = [], action) {
       ));
     case FETCH_MOVIE2:
       return combineTwoLines(state, action.payload.data.trendData);
-      // return action.payload.data.trendData.map((data, idx) => {
-      //   let stateData = state[idx];
-      //   if (!stateData) stateData = { primaryTrendVolume: undefined };
-      //   const { primaryTrendVolume } = stateData;
-      //   return {
-      //     date: data.formattedAxisTime,
-      //     primaryTrendVolume,
-      //     secondaryTrendVolume: data.value,
-      //   };
-      // });
     default:
       return state;
   }
