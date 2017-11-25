@@ -32,13 +32,21 @@ class SearchBox extends Component {
     const hasSecondary = this.state.secondaryMovieList.length > 0;
     return (
       <div>
-        <SearchBar onMovieSearch={this.onMovieSearch} type="primary" />
+        <SearchBar
+          onMovieSearch={this.onMovieSearch}
+          type="primary"
+        />
         {hasPrimary &&
         <MovieList
           movies={this.state.primaryMovieList}
           fetchMovie={this.props.fetchMovie1}
         />}
-        {hasPrimary && <SearchBar onMovieSearch={this.onMovieSearch} type="secondary" />}
+        {hasPrimary &&
+        <SearchBar
+          onMovieSearch={this.onMovieSearch}
+          placeholderText="Search Movie to compare against"
+          type="secondary"
+        />}
         {hasSecondary &&
         <MovieList
           movies={this.state.secondaryMovieList}

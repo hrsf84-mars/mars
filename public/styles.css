@@ -10,11 +10,17 @@ body {
   margin: 0 auto;
 }
 
+.movieComponent {
+  max-height: 30%;
+}
+
 .movieButton {
-  width: 10%;
   margin: 5px 5%;
+  max-height: 30%;
+  width: 10%;
 }
 
 button img {
+  max-height: 15%;
   width: 100%;
 }
