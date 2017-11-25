@@ -1,9 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import Graph from './Graph';
-import PrimaryTable from './PrimaryTable';
-import SecondaryTable from './SecondaryTable';
-import Title from './Title';
+// import Graph from './Graph';
+// import PrimaryTable from './PrimaryTable';
+// import SecondaryTable from './SecondaryTable';
+// import Title from './Title';
+import SearchBox from '../containers/SearchBox';
+import MovieDetail from '../containers/MovieDetail';
 
 // To do:
 // Refactor table section to be an actual table
@@ -178,7 +180,7 @@ class App extends React.Component {
       <div>
         <h1>Cliff on Mars</h1>
 
-        <div id="search">
+        {/* <div id="search">
           <form onSubmit={this.handleFirstSubmit}>
             <input
               type="text"
@@ -197,9 +199,12 @@ class App extends React.Component {
               />}
             <input type="submit" value="Find Second Movie" />
           </form>
-        </div>
+        </div> */}
 
-        {this.state.is_secondary ?
+        <SearchBox />
+        <MovieDetail />
+
+        {/* {this.state.is_secondary ?
           <Title
             primary_movie={this.state.primary_movie}
             secondary_movie={this.state.secondary_movie}
@@ -213,7 +218,7 @@ class App extends React.Component {
 
         <PrimaryTable primary_movie={this.state.primary_movie} />
         <br /><br />
-        {this.state.is_secondary && <SecondaryTable secondary_movie={this.state.secondary_movie} />}
+        {this.state.is_secondary && <SecondaryTable secondary_movie={this.state.secondary_movie} />} */}
       </div>
     );
   }
