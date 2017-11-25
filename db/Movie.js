@@ -22,9 +22,8 @@ const movieSchema = new mongoose.Schema({
   estimatedProfit: Number,
   releaseDate: Date,
   trendData: [{
-    formattedAxisTime: {
-      type: String,
-    },
+    formattedTime: String,
+    formattedAxisTime: String,
     value: Number,
   }],
 });
