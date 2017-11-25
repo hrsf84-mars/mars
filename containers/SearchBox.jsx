@@ -16,6 +16,8 @@ class SearchBox extends Component {
     };
 
     this.onMovieSearch = this.onMovieSearch.bind(this);
+    this.fetchPrimaryMovie = this.fetchPrimaryMovie.bind(this);
+    this.fetchSecondaryMovie = this.fetchSecondaryMovie.bind(this);
   }
 
   onMovieSearch(query, type) {
@@ -27,38 +29,52 @@ class SearchBox extends Component {
       .catch(err => console.error(err));
   }
 
+  fetchPrimaryMovie(id) {
+    this.setState({ primaryMovieList: [] });
+    this.props.fetchMovie1(id);
+  }
+
+  fetchSecondaryMovie(id) {
+    this.setState({ secondaryMovieList: [] });
+    this.props.fetchMovie2(id);
+  }
+
   render() {
-    const hasPrimary = this.state.primaryMovieList.length > 0;
-    const hasSecondary = this.state.secondaryMovieList.length > 0;
+    const hasPrimaryMovieList = this.state.primaryMovieList.length > 0;
+    const hasSecondaryMovieList = this.state.secondaryMovieList.length > 0;
     return (
       <div>
         <SearchBar
           onMovieSearch={this.onMovieSearch}
           type="primary"
         />
-        {hasPrimary &&
+        {hasPrimaryMovieList &&
         <MovieList
           movies={this.state.primaryMovieList}
-          fetchMovie={this.props.fetchMovie1}
+          fetchMovie={this.fetchPrimaryMovie}
         />}
-        {hasPrimary &&
+        {this.props.isPrimarySelected &&
         <SearchBar
           onMovieSearch={this.onMovieSearch}
-          placeholderText="Search Movie to compare against"
+          placeholderText="Search Movie to Compare"
           type="secondary"
         />}
-        {hasSecondary &&
+        {hasSecondaryMovieList &&
         <MovieList
           movies={this.state.secondaryMovieList}
-          fetchMovie={this.props.fetchMovie2}
+          fetchMovie={this.fetchSecondaryMovie}
         />}
       </div>
     );
   }
 }
 
+function mapStateToProps({ isPrimarySelected }) {
+  return { isPrimarySelected };
+}
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchMovie1, fetchMovie2 }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(SearchBox);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);
