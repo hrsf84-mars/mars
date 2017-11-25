@@ -24,7 +24,7 @@ export default class SearchBar extends Component {
     return (
       <form className="input-group" onSubmit={this.onFormSubmit}>
         <input
-          placeholder="Enter Movie Name"
+          placeholder={this.props.placeholderText || 'Search Movie'}
           className="form-control"
           value={this.state.term}
           onChange={this.onInputChange}
