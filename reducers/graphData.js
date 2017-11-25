@@ -6,7 +6,7 @@ function combineTwoLines(primaryGraph, secondaryGraph) {
   primaryGraph.forEach((data) => {
     const { date, primaryTrendVolume } = data;
     const arr = [primaryTrendVolume];
-    dateToVol.set(date, arr);
+    if (primaryTrendVolume) dateToVol.set(date, arr);
   });
 
   secondaryGraph.forEach((data) => {
