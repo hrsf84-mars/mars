@@ -18,12 +18,11 @@ class SearchBox extends Component {
     this.onMovieSearch = this.onMovieSearch.bind(this);
   }
 
-  onMovieSearch(query) {
+  onMovieSearch(query, type) {
     axios.get(`/search/${query}`)
       .then((response) => {
-        if (this.state.primaryMovieList.length) {
-          this.setState({ secondaryMovieList: response.data.results });
-        } else this.setState({ primaryMovieList: response.data.results });
+        if (type === 'primary') this.setState({ primaryMovieList: response.data.results });
+        else if (type === 'secondary') this.setState({ secondaryMovieList: response.data.results });
       })
       .catch(err => console.error(err));
   }
@@ -33,12 +32,18 @@ class SearchBox extends Component {
     const hasSecondary = this.state.secondaryMovieList.length > 0;
     return (
       <div>
-        <SearchBar onMovieSearch={this.onMovieSearch} />
+        <SearchBar onMovieSearch={this.onMovieSearch} type="primary" />
         {hasPrimary &&
-        <MovieList movies={this.state.primaryMovieList} fetchMovie={this.props.fetchMovie1} />}
-        {hasPrimary && <SearchBar onMovieSearch={this.onMovieSearch} />}
+        <MovieList
+          movies={this.state.primaryMovieList}
+          fetchMovie={this.props.fetchMovie1}
+        />}
+        {hasPrimary && <SearchBar onMovieSearch={this.onMovieSearch} type="secondary" />}
         {hasSecondary &&
-        <MovieList movies={this.state.secondaryMovieList} fetchMovie={this.props.fetchMovie2} />}
+        <MovieList
+          movies={this.state.secondaryMovieList}
+          fetchMovie={this.props.fetchMovie2}
+        />}
       </div>
     );
   }
