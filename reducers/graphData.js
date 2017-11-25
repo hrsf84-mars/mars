@@ -11,13 +11,13 @@ export default function (state = [], action) {
       ));
     case FETCH_MOVIE2:
       return action.payload.data.trendData.map((data, idx) => {
-        const { date, primaryTrendVolume } = state[idx];
+        // const { primaryTrendVolume } = state[idx];
         return {
-          date,
-          primaryTrendVolume,
+          date: data.formattedAxisTime,
+          // primaryTrendVolume,
           secondaryTrendVolume: data.value,
         };
-      });
+      }).concat(state);
     default:
       return state;
   }
