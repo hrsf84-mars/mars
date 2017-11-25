@@ -7,7 +7,7 @@ function Graph(props) {
     <div id="graph">
       <LineChart width={800} height={400} data={props.graphData}>
         <Line type="monotone" dataKey="primaryTrendVolume" stroke="#8884d8" />
-        <Line type="monotone" dataKey="secondaryTrendVolume" stroke="#8884d8" />
+        <Line type="monotone" dataKey="secondaryTrendVolume" stroke="#FF0000" />
         <CartesianGrid stroke="#ccc" />
         <XAxis dataKey="date">
           <Label value="Weeks after release date" offset={0} position="insideBottom" />
