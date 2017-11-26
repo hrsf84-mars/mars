@@ -1,4 +1,7 @@
 import React from 'react';
+import Avatar from 'material-ui/Avatar';
+import Chip from 'material-ui/Chip';
+import { List, ListItem } from 'material-ui/List';
 import {
   Table,
   TableBody,
@@ -7,6 +10,9 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import { yellow100, yellow500, red100, red500 } from 'material-ui/styles/colors';
+import EditorAttachMoney from 'material-ui/svg-icons/editor/attach-money';
+import ActionSchedule from 'material-ui/svg-icons/action/schedule';
 import moment from 'moment';
 
 const translateToCurrency = (value) => {
@@ -50,28 +56,66 @@ export default ({ primaryMovie, secondaryMovie }) => {
         <TableRow>
           <TableRowColumn>Revenue</TableRowColumn>
           <TableRowColumn>
-            {primaryMovie.revenue && translateToCurrency(primaryMovie.revenue)}
+            {primaryMovie.revenue &&
+            <Chip backgroundColor={yellow100}>
+              <Avatar icon={<EditorAttachMoney />} color={yellow100} backgroundColor={yellow500} />
+              {translateToCurrency(primaryMovie.revenue)}
+            </Chip>}
           </TableRowColumn>
           {secondaryTitle &&
-          <TableRowColumn>{translateToCurrency(secondaryMovie.revenue)}</TableRowColumn>}
+          <TableRowColumn>
+            <Chip backgroundColor={yellow100}>
+              <Avatar icon={<EditorAttachMoney />} color={yellow100} backgroundColor={yellow500} />
+              {translateToCurrency(secondaryMovie.revenue)}
+            </Chip>
+          </TableRowColumn>}
         </TableRow>
         <TableRow>
           <TableRowColumn>Release Date</TableRowColumn>
           <TableRowColumn>
-            {primaryMovie.releaseDate && moment(primaryMovie.releaseDate).format('MMMM Do YYYY')}
+            {primaryMovie.releaseDate &&
+            <Chip backgroundColor={red100}>
+              <Avatar icon={<ActionSchedule />} color={red100} backgroundColor={red500} />
+              {moment(primaryMovie.releaseDate).format('MMMM Do YYYY')}
+            </Chip>}
           </TableRowColumn>
           {secondaryTitle &&
-          <TableRowColumn>{moment(secondaryMovie.releaseDate).format('MMMM Do YYYY')}</TableRowColumn>}
+          <TableRowColumn>
+            <Chip backgroundColor={red100}>
+              <Avatar icon={<ActionSchedule />} color={red100} backgroundColor={red500} />
+              {moment(secondaryMovie.releaseDate).format('MMMM Do YYYY')}
+            </Chip>
+          </TableRowColumn>}
         </TableRow>
         <TableRow>
           <TableRowColumn>Genres</TableRowColumn>
-          <TableRowColumn>{primaryMovie.genres}</TableRowColumn>
-          {secondaryTitle && <TableRowColumn>{secondaryMovie.genres}</TableRowColumn>}
+          <TableRowColumn>
+            <List>
+              {primaryMovie.genres &&
+              primaryMovie.genres.map(g => <ListItem primaryText={g} />)}
+            </List>
+          </TableRowColumn>
+          {secondaryTitle &&
+          <TableRowColumn>
+            <List>
+              {secondaryMovie.genres.map(g => <ListItem primaryText={g} />)}
+            </List>
+          </TableRowColumn>}
         </TableRow>
         <TableRow>
           <TableRowColumn>Production Companies</TableRowColumn>
-          <TableRowColumn>{primaryMovie.productionCompanies}</TableRowColumn>
-          {secondaryTitle && <TableRowColumn>{secondaryMovie.productionCompanies}</TableRowColumn>}
+          <TableRowColumn>
+            <List>
+              {primaryMovie.productionCompanies &&
+              primaryMovie.productionCompanies.map(pc => <ListItem primaryText={pc} />)}
+            </List>
+          </TableRowColumn>
+          {secondaryTitle &&
+          <TableRowColumn>
+            <List>
+              {secondaryMovie.productionCompanies.map(pc => <ListItem primaryText={pc} />)}
+            </List>
+          </TableRowColumn>}
         </TableRow>
       </TableBody>
     </Table>
