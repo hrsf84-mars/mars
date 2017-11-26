@@ -5,7 +5,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Label, Tooltip, Legend } 
 function Graph(props) {
   return (
     <div id="graph">
-      <LineChart width={800} height={400} data={props.graphData}>
+      <LineChart width={1000} height={400} data={props.graphData}>
         <Line name={props.primaryMovie.title} type="monotone" dataKey="primaryTrendVolume" stroke="#8884d8" />
         <Line name={props.secondaryMovie.title} type="monotone" dataKey="secondaryTrendVolume" stroke="#FF0000" />
         <CartesianGrid stroke="#ccc" />
