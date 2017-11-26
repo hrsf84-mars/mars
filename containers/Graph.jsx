@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Label } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Label, Tooltip } from 'recharts';
 
 function Graph(props) {
   return (
@@ -13,6 +13,7 @@ function Graph(props) {
           <Label value="Weeks after release date" offset={0} position="insideBottom" />
         </XAxis>
         <YAxis label={{ value: 'Search Volume', angle: -90, position: 'insideLeft' }} />
+        <Tooltip />
       </LineChart>
     </div>
   );
