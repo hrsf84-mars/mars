@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Paper from 'material-ui/Paper';
 import axios from 'axios';
 import SearchBar from '../components/SearchBar';
 import MovieList from '../components/MovieList';
@@ -13,6 +14,10 @@ class SearchBox extends Component {
     this.state = {
       primaryMovieList: [],
       secondaryMovieList: [],
+    };
+
+    this.style = {
+      padding: '25px',
     };
 
     this.onMovieSearch = this.onMovieSearch.bind(this);
@@ -43,9 +48,10 @@ class SearchBox extends Component {
     const hasPrimaryMovieList = this.state.primaryMovieList.length > 0;
     const hasSecondaryMovieList = this.state.secondaryMovieList.length > 0;
     return (
-      <div>
+      <Paper zDepth={2} style={this.style}>
         <SearchBar
           onMovieSearch={this.onMovieSearch}
+          floatingLabelText="Search Primary Movie"
           type="primary"
         />
         {hasPrimaryMovieList &&
@@ -56,7 +62,7 @@ class SearchBox extends Component {
         {this.props.isPrimarySelected &&
         <SearchBar
           onMovieSearch={this.onMovieSearch}
-          placeholderText="Search Movie to Compare"
+          floatingLabelText="Search Secondary Movie"
           type="secondary"
         />}
         {hasSecondaryMovieList &&
@@ -64,7 +70,7 @@ class SearchBox extends Component {
           movies={this.state.secondaryMovieList}
           fetchMovie={this.fetchSecondaryMovie}
         />}
-      </div>
+      </Paper>
     );
   }
 }

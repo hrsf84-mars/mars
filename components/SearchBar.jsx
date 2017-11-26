@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TextField from 'material-ui/TextField';
 
 export default class SearchBar extends Component {
   constructor() {
@@ -22,16 +23,13 @@ export default class SearchBar extends Component {
 
   render() {
     return (
-      <form className="input-group" onSubmit={this.onFormSubmit}>
-        <input
-          placeholder={this.props.placeholderText || 'Search Movie'}
-          className="form-control"
+      <form onSubmit={this.onFormSubmit}>
+        <TextField
+          hintText="Insert Movie Name"
+          floatingLabelText={this.props.floatingLabelText}
           value={this.state.term}
           onChange={this.onInputChange}
         />
-        <span className="input-group-btn">
-          <button type="submit" className="btn btn-secondary">Search</button>
-        </span>
       </form>
     );
   }
