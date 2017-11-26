@@ -13,7 +13,10 @@ const MovieDetail = props => (
       primaryMovie={props.primaryMovie}
       secondaryMovie={props.secondaryMovie}
     />
-    <Graph />
+    <Graph
+     primaryMovie={props.primaryMovie}
+     secondaryMovie={props.secondaryMovie}
+    />
     <MovieInfo
       primaryMovie={props.primaryMovie}
       secondaryMovie={props.secondaryMovie}
