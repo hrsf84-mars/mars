@@ -26,7 +26,11 @@ app.get('/movie/:tmdbId', async (req, res) => {
   try {
     const movie = await Movie.findOne({ tmdbId });
     if (movie) {
-      return res.send(movie);
+      const emotion = await avgTweetEmotion(movie.title);
+      // const results = Object.assign({}, movie._doc, { emotion });
+      const results = movie.toObject();
+      results.emotion = emotion;
+      return res.send(results);
     }
 
     const data = [await tmdb.fetchMovieById(tmdbId), await tmdb.fetchImageById(tmdbId)];
@@ -59,11 +63,11 @@ app.get('/movie/:tmdbId', async (req, res) => {
         value: (trend.value[0] / trend.value[1]) * 100,
       };
     });
-    results.emotion = emotion;
-    console.log(emotion);
 
     const movieDoc = new Movie(results);
     await movieDoc.save();
+
+    results.emotion = emotion;
     return res.send(results);
   } catch (err) {
     return res.status(400).send(err);

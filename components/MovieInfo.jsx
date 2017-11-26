@@ -89,7 +89,7 @@ export default ({ primaryMovie, secondaryMovie }) => {
           </TableRowColumn>}
         </TableRow>
         <TableRow>
-          <TableRowColumn>Emotion</TableRowColumn>
+          <TableRowColumn>Reaction</TableRowColumn>
           <TableRowColumn>
             {primaryMovie.emotion && <Emotion emotion={primaryMovie.emotion} />}
           </TableRowColumn>
