@@ -25,6 +25,13 @@ const movieSchema = new mongoose.Schema({
     formattedAxisTime: String,
     value: Number,
   }],
+  emotion: {
+    sadness: Number,
+    joy: Number,
+    fear: Number,
+    disgust: Number,
+    anger: Number,
+  },
 });
 
 const Movie = mongoose.model('Movie', movieSchema);

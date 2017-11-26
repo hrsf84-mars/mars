@@ -8,7 +8,7 @@ import MovieInfo from '../components/MovieInfo';
 const style = { padding: '35px' };
 
 const MovieDetail = props => (
-  <Paper zDepth={2} style={style}>
+  <Paper zDepth={1} style={style}>
     <Title
       primaryMovie={props.primaryMovie}
       secondaryMovie={props.secondaryMovie}
