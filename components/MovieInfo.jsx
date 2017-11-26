@@ -14,6 +14,7 @@ import { yellow100, yellow500, red100, red500 } from 'material-ui/styles/colors'
 import EditorAttachMoney from 'material-ui/svg-icons/editor/attach-money';
 import ActionSchedule from 'material-ui/svg-icons/action/schedule';
 import moment from 'moment';
+import Emotion from './Emotion';
 
 const translateToCurrency = (value) => {
   let num = value;
@@ -85,6 +86,16 @@ export default ({ primaryMovie, secondaryMovie }) => {
               <Avatar icon={<ActionSchedule />} color={red100} backgroundColor={red500} />
               {moment(secondaryMovie.releaseDate).format('MMMM Do YYYY')}
             </Chip>
+          </TableRowColumn>}
+        </TableRow>
+        <TableRow>
+          <TableRowColumn>Emotion</TableRowColumn>
+          <TableRowColumn>
+            {primaryMovie.emotion && <Emotion emotion={primaryMovie.emotion} />}
+          </TableRowColumn>
+          {secondaryTitle &&
+          <TableRowColumn>
+            {secondaryMovie.emotion && <Emotion emotion={primaryMovie.emotion} />}
           </TableRowColumn>}
         </TableRow>
         <TableRow>

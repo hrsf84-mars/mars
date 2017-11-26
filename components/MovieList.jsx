@@ -21,7 +21,7 @@ const titleBackgroundStyle =
 const url = 'https://image.tmdb.org/t/p/w154';
 
 export default ({ movies, fetchMovie }) => {
-  const movieList = movies.map(movie => (
+  const movieList = movies.filter(movie => movie.poster_path).map(movie => (
     <GridTile
       key={movie.id}
       title={movie.title}
