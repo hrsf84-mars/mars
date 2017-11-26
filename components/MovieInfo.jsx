@@ -20,7 +20,7 @@ export default ({ primaryMovie, secondaryMovie }) => {
         <TableRow>
           <TableHeaderColumn>Movie Info</TableHeaderColumn>
           <TableHeaderColumn>{primaryTitle}</TableHeaderColumn>
-          <TableHeaderColumn>{secondaryTitle}</TableHeaderColumn>
+          {secondaryTitle && <TableHeaderColumn>{secondaryTitle}</TableHeaderColumn>}
         </TableRow>
       </TableHeader>
       <TableBody
@@ -30,22 +30,22 @@ export default ({ primaryMovie, secondaryMovie }) => {
         <TableRow>
           <TableRowColumn>Revenue</TableRowColumn>
           <TableRowColumn>{primaryMovie.revenue}</TableRowColumn>
-          <TableRowColumn>{secondaryMovie.revenue}</TableRowColumn>
+          {secondaryTitle && <TableRowColumn>{secondaryMovie.revenue}</TableRowColumn>}
         </TableRow>
         <TableRow>
           <TableRowColumn>Release Date</TableRowColumn>
           <TableRowColumn>{primaryMovie.releaseDate}</TableRowColumn>
-          <TableRowColumn>{secondaryMovie.releaseDate}</TableRowColumn>
+          {secondaryTitle && <TableRowColumn>{secondaryMovie.releaseDate}</TableRowColumn>}
         </TableRow>
         <TableRow>
           <TableRowColumn>Genres</TableRowColumn>
           <TableRowColumn>{primaryMovie.genres}</TableRowColumn>
-          <TableRowColumn>{secondaryMovie.genres}</TableRowColumn>
+          {secondaryTitle && <TableRowColumn>{secondaryMovie.genres}</TableRowColumn>}
         </TableRow>
         <TableRow>
           <TableRowColumn>Production Companies</TableRowColumn>
           <TableRowColumn>{primaryMovie.productionCompanies}</TableRowColumn>
-          <TableRowColumn>{secondaryMovie.productionCompanies}</TableRowColumn>
+          {secondaryTitle && <TableRowColumn>{secondaryMovie.productionCompanies}</TableRowColumn>}
         </TableRow>
       </TableBody>
     </Table>
