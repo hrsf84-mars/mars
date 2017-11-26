@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 import Paper from 'material-ui/Paper';
+import { cyan100 } from 'material-ui/styles/colors';
 import axios from 'axios';
 import SearchBar from '../components/SearchBar';
 import MovieList from '../components/MovieList';
@@ -23,6 +24,7 @@ class SearchBox extends Component {
     };
 
     this.imgUrl = 'https://image.tmdb.org/t/p/w92';
+    this.chipColor = cyan100;
 
     this.onMovieSearch = this.onMovieSearch.bind(this);
     this.fetchPrimaryMovie = this.fetchPrimaryMovie.bind(this);
@@ -65,7 +67,7 @@ class SearchBox extends Component {
           fetchMovie={this.fetchPrimaryMovie}
         />}
         {!hasPrimaryMovieList && primaryMovie.title &&
-        <Chip style={{ margin: 'auto' }}>
+        <Chip style={{ margin: 'auto' }} backgroundColor={this.chipColor}>
           <Avatar src={this.imgUrl + primaryMovie.images[0]} />
           {primaryMovie.title}
         </Chip>}
@@ -81,7 +83,7 @@ class SearchBox extends Component {
           fetchMovie={this.fetchSecondaryMovie}
         />}
         {!hasSecondaryMovieList && secondaryMovie.title &&
-        <Chip style={{ margin: 'auto' }}>
+        <Chip style={{ margin: 'auto' }} backgroundColor={this.chipColor}>
           <Avatar src={this.imgUrl + secondaryMovie.images[0]} />
           {secondaryMovie.title}
         </Chip>}
