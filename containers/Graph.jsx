@@ -10,9 +10,9 @@ function Graph(props) {
         <Line name={props.secondaryMovie.title || ' '} type="monotone" dataKey="secondaryTrendVolume" stroke="#FF0000" />
         <CartesianGrid stroke="#ccc" />
         <XAxis dataKey="date">
-          <Label value="Weeks after release date" offset={0} position="insideBottom" />
+          <Label value="Date" offset={0} position="insideBottom" />
         </XAxis>
-        <YAxis label={{ value: 'Search Volume', angle: -90, position: 'insideLeft' }} />
+        <YAxis label={{ value: 'Relative Search Volume', angle: -90, position: 'insideLeft' }} />
         <Tooltip />
         <Legend verticalAlign="top" />
       </LineChart>
