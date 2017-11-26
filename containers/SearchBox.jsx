@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Avatar from 'material-ui/Avatar';
+import Chip from 'material-ui/Chip';
 import Paper from 'material-ui/Paper';
 import axios from 'axios';
 import SearchBar from '../components/SearchBar';
@@ -19,6 +21,8 @@ class SearchBox extends Component {
     this.style = {
       padding: '25px',
     };
+
+    this.imgUrl = 'https://image.tmdb.org/t/p/w92';
 
     this.onMovieSearch = this.onMovieSearch.bind(this);
     this.fetchPrimaryMovie = this.fetchPrimaryMovie.bind(this);
@@ -47,6 +51,7 @@ class SearchBox extends Component {
   render() {
     const hasPrimaryMovieList = this.state.primaryMovieList.length > 0;
     const hasSecondaryMovieList = this.state.secondaryMovieList.length > 0;
+    const { primaryMovie, secondaryMovie } = this.props;
     return (
       <Paper zDepth={2} style={this.style}>
         <SearchBar
@@ -59,7 +64,12 @@ class SearchBox extends Component {
           movies={this.state.primaryMovieList}
           fetchMovie={this.fetchPrimaryMovie}
         />}
-        {this.props.isPrimarySelected &&
+        {!hasPrimaryMovieList && primaryMovie.title &&
+        <Chip style={{ margin: 'auto' }}>
+          <Avatar src={this.imgUrl + primaryMovie.images[0]} />
+          {primaryMovie.title}
+        </Chip>}
+        {primaryMovie.title &&
         <SearchBar
           onMovieSearch={this.onMovieSearch}
           floatingLabelText="Search Secondary Movie"
@@ -70,13 +80,18 @@ class SearchBox extends Component {
           movies={this.state.secondaryMovieList}
           fetchMovie={this.fetchSecondaryMovie}
         />}
+        {!hasSecondaryMovieList && secondaryMovie.title &&
+        <Chip style={{ margin: 'auto' }}>
+          <Avatar src={this.imgUrl + secondaryMovie.images[0]} />
+          {secondaryMovie.title}
+        </Chip>}
       </Paper>
     );
   }
 }
 
-function mapStateToProps({ isPrimarySelected }) {
-  return { isPrimarySelected };
+function mapStateToProps({ primaryMovie, secondaryMovie }) {
+  return { primaryMovie, secondaryMovie };
 }
 
 function mapDispatchToProps(dispatch) {
