@@ -1,34 +1,53 @@
 import React from 'react';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
 
 export default ({ primaryMovie, secondaryMovie }) => {
   const primaryTitle = primaryMovie.title;
   const secondaryTitle = secondaryMovie.title;
   return (
-    <table className="table table-hover">
-      <thead>
-        <tr>
-          <th>Movie Info</th>
-          <th>{primaryTitle}</th>
-          <th>{secondaryTitle}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>Revenue</th>
-          <th>{primaryMovie.revenue}</th>
-          <th>{secondaryMovie.revenue}</th>
-        </tr>
-        <tr>
-          <th>Release Date</th>
-          <th>{primaryMovie.releaseDate}</th>
-          <th>{secondaryMovie.releaseDate}</th>
-        </tr>
-        <tr>
-          <th>Production Companies</th>
-          <th>{primaryMovie.productionCompanies}</th>
-          <th>{secondaryMovie.productionCompanies}</th>
-        </tr>
-      </tbody>
-    </table>
+    <Table fixedHeader>
+      <TableHeader
+        adjustForCheckbox={false}
+        displaySelectAll={false}
+      >
+        <TableRow>
+          <TableHeaderColumn>Movie Info</TableHeaderColumn>
+          <TableHeaderColumn>{primaryTitle}</TableHeaderColumn>
+          <TableHeaderColumn>{secondaryTitle}</TableHeaderColumn>
+        </TableRow>
+      </TableHeader>
+      <TableBody
+        displayRowCheckbox={false}
+        showRowHover
+      >
+        <TableRow>
+          <TableRowColumn>Revenue</TableRowColumn>
+          <TableRowColumn>{primaryMovie.revenue}</TableRowColumn>
+          <TableRowColumn>{secondaryMovie.revenue}</TableRowColumn>
+        </TableRow>
+        <TableRow>
+          <TableRowColumn>Release Date</TableRowColumn>
+          <TableRowColumn>{primaryMovie.releaseDate}</TableRowColumn>
+          <TableRowColumn>{secondaryMovie.releaseDate}</TableRowColumn>
+        </TableRow>
+        <TableRow>
+          <TableRowColumn>Genres</TableRowColumn>
+          <TableRowColumn>{primaryMovie.genres}</TableRowColumn>
+          <TableRowColumn>{secondaryMovie.genres}</TableRowColumn>
+        </TableRow>
+        <TableRow>
+          <TableRowColumn>Production Companies</TableRowColumn>
+          <TableRowColumn>{primaryMovie.productionCompanies}</TableRowColumn>
+          <TableRowColumn>{secondaryMovie.productionCompanies}</TableRowColumn>
+        </TableRow>
+      </TableBody>
+    </Table>
   );
 };
