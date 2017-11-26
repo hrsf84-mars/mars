@@ -1,11 +1,13 @@
 import React from 'react';
+import Paper from 'material-ui/Paper';
+import AppBar from 'material-ui/AppBar';
 import SearchBox from '../containers/SearchBox';
 import MovieDetail from '../containers/MovieDetail';
 
 export default () => (
-  <div>
-    <h1>Cliff on Mars</h1>
+  <Paper>
+    <AppBar title="Cliff on Mars" showMenuIconButton={false} />
     <SearchBox />
     <MovieDetail />
-  </div>
+  </Paper>
 );

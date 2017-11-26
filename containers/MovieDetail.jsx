@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Paper from 'material-ui/Paper';
 import Title from '../components/Title';
 import Graph from './Graph';
 import MovieInfo from '../components/MovieInfo';
@@ -9,11 +10,15 @@ class MovieDetail extends Component {
     super(props);
 
     this.state = {};
+
+    this.style = {
+      padding: '25px',
+    };
   }
 
   render() {
     return (
-      <div>
+      <Paper zDepth={2} style={this.style}>
         <Title
           primaryMovie={this.props.primaryMovie}
           secondaryMovie={this.props.secondaryMovie}
@@ -23,7 +28,7 @@ class MovieDetail extends Component {
           primaryMovie={this.props.primaryMovie}
           secondaryMovie={this.props.secondaryMovie}
         />
-      </div>
+      </Paper>
     );
   }
 }
