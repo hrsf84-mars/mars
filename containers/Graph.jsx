@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Label, Tooltip } from 'recharts';
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Label, Tooltip, Legend } from 'recharts';
 
 function Graph(props) {
   return (
@@ -14,6 +14,7 @@ function Graph(props) {
         </XAxis>
         <YAxis label={{ value: 'Search Volume', angle: -90, position: 'insideLeft' }} />
         <Tooltip />
+        <Legend verticalAlign="top" />
       </LineChart>
     </div>
   );
