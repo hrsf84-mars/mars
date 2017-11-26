@@ -92,13 +92,13 @@ export default ({ primaryMovie, secondaryMovie }) => {
           <TableRowColumn>
             <List>
               {primaryMovie.genres &&
-              primaryMovie.genres.map(g => <ListItem primaryText={g} />)}
+              primaryMovie.genres.map(g => <ListItem key={g} primaryText={g} />)}
             </List>
           </TableRowColumn>
           {secondaryTitle &&
           <TableRowColumn>
             <List>
-              {secondaryMovie.genres.map(g => <ListItem primaryText={g} />)}
+              {secondaryMovie.genres.map(g => <ListItem key={g} primaryText={g} />)}
             </List>
           </TableRowColumn>}
         </TableRow>
@@ -107,13 +107,13 @@ export default ({ primaryMovie, secondaryMovie }) => {
           <TableRowColumn>
             <List>
               {primaryMovie.productionCompanies &&
-              primaryMovie.productionCompanies.map(pc => <ListItem primaryText={pc} />)}
+              primaryMovie.productionCompanies.map(pc => <ListItem key={pc} primaryText={pc} />)}
             </List>
           </TableRowColumn>
           {secondaryTitle &&
           <TableRowColumn>
             <List>
-              {secondaryMovie.productionCompanies.map(pc => <ListItem primaryText={pc} />)}
+              {secondaryMovie.productionCompanies.map(pc => <ListItem key={pc} primaryText={pc} />)}
             </List>
           </TableRowColumn>}
         </TableRow>

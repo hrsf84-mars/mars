@@ -1,6 +1,7 @@
 const express = require('express');
 const tmdb = require('./utils/tmdb');
 const { movieTrend } = require('./utils/trendFetch');
+const { avgTweetEmotion } = require('./utils/twitterEmotion');
 const Movie = require('./db/Movie');
 
 const app = express();
@@ -42,7 +43,13 @@ app.get('/movie/:tmdbId', async (req, res) => {
     results.releaseDate = movieData.release_date;
     results.images = images;
 
-    const trendData = await movieTrend(results.title, results.releaseDate);
+    const smData = [
+      await movieTrend(results.title, results.releaseDate),
+      await avgTweetEmotion(results.title),
+    ];
+    const trendData = smData[0];
+    const emotion = smData[1];
+
     const { timelineData } = JSON.parse(trendData).default;
     results.trendData = timelineData.map((trend) => {
       let { formattedAxisTime } = trend;
@@ -52,6 +59,8 @@ app.get('/movie/:tmdbId', async (req, res) => {
         value: (trend.value[0] / trend.value[1]) * 100,
       };
     });
+    results.emotion = emotion;
+    console.log(emotion);
 
     const movieDoc = new Movie(results);
     await movieDoc.save();
