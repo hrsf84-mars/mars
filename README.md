@@ -23,22 +23,23 @@ An advanced movie database that gives passionate movie fans and studio executive
 
 ## Usage
 
-> Point your browser at cliffonmarsdb.herokuapp.com
+Point your browser at cliffonmarsdb.herokuapp.com
 
 ## Requirements
 
-- Node >=6.4.0
+- Node
 - Express
 - MongoDB
 - React
 - Recharts
 - Redux
 - Axios
-- Google Trends API key
+- Google Trends API (npm library)
 - Twitter API key
 - Watson API key
 - Material UI
 - Mongoose
+- Moment
 - Path
 - Webpack
 
