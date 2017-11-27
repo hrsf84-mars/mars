@@ -1,13 +1,15 @@
 # Project Name
 
-> An advanced movie database that combines movie data and social media stats.
+### Cliff on Mars
 
-## Team
+An advanced movie database that gives passionate movie fans and studio executives easy access to movie data and social media stats of recent films.
 
-  - Joe
-  - Cliff
-  - Hubert
-  - Tim
+## Team and Areas of Responsibility
+
+  - Joe: Social Media API and layout
+  - Cliff: Documentation and testing
+  - Hubert: TMDB API, server setup, and machine learning
+  - Tim: Recharts and database
 
 ## Table of Contents
 
@@ -15,7 +17,7 @@
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
+    1. [Setting up Development server](#setting-up-development-server)
 1. [Roadmap](#roadmap)
 1. [Contributing](#contributing)
 
@@ -29,7 +31,15 @@
 - Express
 - MongoDB
 - React
-- etc
+- Recharts
+- Redux
+- Axios
+- Google Trends API key
+- Material UI
+- Mongoose
+- Path
+- Webpack
+
 
 ## Development
 
@@ -41,11 +51,17 @@ From within the root directory:
 npm install
 ```
 
+### Setting up Development Server
+
+```sh
+webpack && API_KEY=[YOUR TMDB API KEY] node app.js
+```
+
 ### Roadmap
 
-View the project roadmap [here](ROADMAP.md)
+View the project roadmap [here](ROADMAP.md) and the plan [here][https://docs.google.com/document/d/15czq7Fzn3rc_JXZxyFtZpoqCtUIBf08MkfFHV2tYLOI/edit?usp=sharing].
 
 
 ## Contributing
 
-Submit pull request, at least 1 peer should review
+Communicate, commit often, and at least 1 peer should review pull requests.
