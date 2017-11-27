@@ -94,6 +94,8 @@ class SearchBox extends Component {
 }
 
 SearchBox.propTypes = {
+  fetchMovie1: PropTypes.func.isRequired,
+  fetchMovie2: PropTypes.func.isRequired,
   primaryMovie: PropTypes.shape({
     title: PropTypes.string,
     images: PropTypes.arrayOf(PropTypes.string),
