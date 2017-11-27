@@ -1,12 +1,7 @@
-const {expect} = require('chai');
+const { expect } = require('chai');
 const request = require('supertest');
-// const request = require('request'); 
-const mongoose = require('mongoose'); 
-// const axios = require('axios'); 
-const express = require('express'); 
-const app = express(); 
-const primaryData = require('../components/_primaryTestData.js'); 
-// const server = require('../app.js'); 
+const primaryData = require('../components/_primaryTestData.js');
+const server = require('../app.js');
 
 describe('Init', () => {
   it('should have 1 to equal 1', () => {
@@ -14,49 +9,50 @@ describe('Init', () => {
   });
 
   it('should return estimated profits', () => {
-    console.log('called est profits'); 
-    var estimatedProfit = primaryData.data.estimated_profit; 
-    expect(estimatedProfit).to.equal(1264); 
+    console.log('called est profits');
+    const estimatedProfit = primaryData.data.estimated_profit;
+    expect(estimatedProfit).to.equal(1264);
   });
 
   // it('should throw an error for nonexistent movies', () => {
   //   console.log('called error nonexistent');
-  //    // var oglebogle = null; // will fill this out when I can see search function 
+  //    // var oglebogle = null; // will fill this out when I can see search function
   //    // expect().to.throw()
   // });
 
   // it(' should gracefully handle errors for movies released before 2010', () => {
-  //   console.log('called error pre 2010'); 
+  //   console.log('called error pre 2010');
   //   // var chinatown = searchFunction('Chinatown')
   //   // expect(chinatown).to.not.have.a.property('estimatedProfit')
   // });
 
   // it('should check database first to see if a movie is already in it', () => {
-  //   console.log('called check database first'); 
+  //   console.log('called check database first');
   //   // var spy = utils.searchMoviebyName('The Lincoln Lawyer')
   //   // expect(spy).to.not.have.been.called.once
   // });
 
   // it('should fetch a movie not in db from tmdb', () => {
-  //   console.log('called fetch a movie not in db from tmdb'); 
-  //   // have to use .then on again 
+  //   console.log('called fetch a movie not in db from tmdb');
+  //   // have to use .then on again
   //   // var spy = utils.searchMoviebyName = ('Thor: Ragnarok')
   //   // expect(spy).to.have.been.called.once
   // });
 
   it('should return movies in specified format', () => {
-    console.log('called return movies in specified format'); 
-    var data = primaryData.data; 
+    console.log('called return movies in specified format');
+    const { data } = primaryData;
     expect(data).to.have.a.property('longitudinal_data');
     expect(data).to.have.a.property('estimated_profit');
     expect(data).to.have.a.property('genre');
     expect(data).to.have.a.property('revenue');
-    expect(data).to.have.a.property('release_date'); 
+    expect(data).to.have.a.property('release_date');
     expect(data).to.have.a.property('title');
-    expect(data).to.have.a.property('images'); 
-    // I'd actually like to write this one later, when I can see what's coming back from the db when I run ths on localhost
+    expect(data).to.have.a.property('images');
+    // I'd actually like to write this one later, when I can see what's coming back from
+    // the db when I run ths on localhost
     // I'll incorporate .then later, and add the correct function
-    // var getOut = (searchFunction('Get Out')); 
+    // var getOut = (searchFunction('Get Out'));
     // expect(getOut).to.have.a.property('budget');
     // expect(getOut).to.have.a.property('revenue');
     // expect(getOut).to.have.a.property('estimatedProfit');
@@ -65,78 +61,74 @@ describe('Init', () => {
   });
 
   it('should return trend ratings in the correct format', () => {
-    console.log('called return trend ratings in the correct format'); 
+    console.log('called return trend ratings in the correct format');
     // var getOutTrendData = (searchFunction('Get Out'))
-    var trendRatings = primaryData.data.longitudinal_data; 
-    var filteredTrends = trendRatings.filter((trend) => {
-      return trend.formattedAxisTime && trend.google_trends_vol; 
-    });
-    expect(filteredTrends.length).to.equal(9); 
+    const trendRatings = primaryData.data.longitudinal_data;
+    const filteredTrends = trendRatings.filter(trend =>
+      trend.formattedAxisTime && trend.google_trends_vol);
+    expect(filteredTrends.length).to.equal(9);
   });
 
 
   // it('should fetch trend data from google Trends', () => {
-  //   console.log('called fetch trend data from multiple apis'); 
-  //   // create separate spies to check if multiple API calls have been made 
+  //   console.log('called fetch trend data from multiple apis');
+  //   // create separate spies to check if multiple API calls have been made
   // });
 
   // it('should be able to return the interest over time of a given movie', () => {
-  //   console.log('called interest over time function'); 
-  // }); 
+  //   console.log('called interest over time function');
+  // });
 
   // it('should chart trend data for one movie if only one movie is searched', () => {
-  //   console.log('chart one movie called'); 
+  //   console.log('chart one movie called');
   // });
 
   // it('should chart trend data for two movies if two movies are searched', () => {
-  //   console.log('chart two movies has been called'); 
-  // }); 
+  //   console.log('chart two movies has been called');
+  // });
 
   // it('should set is_secondary to true if find second movie is clicked', () => {
-  //   console.log('set secondary to true has been called'); 
-  // }); 
+  //   console.log('set secondary to true has been called');
+  // });
 
   it('should have a graphing object with a longitudinal property which is an array of length 9', () => {
-    console.log('graphing obj longitudinal of length 9 is called'); 
-    var data = primaryData.data; 
-    expect(data.longitudinal_data.length).to.equal(9); 
+    console.log('graphing obj longitudinal of length 9 is called');
+    const { data } = primaryData;
+    expect(data.longitudinal_data.length).to.equal(9);
   });
 
   xit('should have a setGraphingObject which has been called', () => {
-    console.log('setGraphingObject test has been called'); 
+    console.log('setGraphingObject test has been called');
   });
 });
 
 describe('loading routes', () => {
-  var server; 
-  beforeEach(function(){
-    server = require('../app.js'); 
+  // let server;
+  beforeEach(() => {
+    // server = require('../app.js');
   });
   afterEach(function(){
-    server.close();
+    // server.close();
   });
-  it('responds to get', function(done){
+  it('responds to get', (done) => {
     request(server)
-    .get('/')
-    .expect(200, done)
+      .get('/')
+      .expect(200, done);
   });
   // the below test requires a valid API key!!!!!
-  xit('responds to search by tmdbId', function(done){
+  xit('responds to search by tmdbId', (done) => {
     request(server)
-    .get('/movie/315635')
-    .expect(200, done)
+      .get('/movie/315635')
+      .expect(200, done);
   });
-  it('responds to searchmovie', function(done){
+  it('responds to searchmovie', (done) => {
     request(server)
-    .get('/search/:movie')
-    .expect(200, done)
+      .get('/search/:movie')
+      .expect(200, done);
   });
-  it('should throw an error for a bad request', function(done){
+  it('should throw an error for a bad request', (done) => {
     request(server)
-    .get('/movie/:tmdbId')
-    .expect(400, done)
+      .get('/movie/:tmdbId')
+      .expect(400, done);
   });
 });
-
-
-
