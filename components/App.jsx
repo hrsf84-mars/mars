@@ -8,7 +8,7 @@ export default function App() {
   return (
     <Paper>
       <AppBar
-        title="Cliff on Mars"
+        title="Cliff Movie DB"
         iconElementLeft={<img src="https://s3.amazonaws.com/tt-public-assets/Cliff_icon.png" alt="Logo" />}
       />
       <SearchBox />
