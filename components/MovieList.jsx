@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { GridList, GridTile } from 'material-ui/GridList';
 
 const styles = {
@@ -20,7 +21,7 @@ const titleBackgroundStyle =
 'linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)';
 const url = 'https://image.tmdb.org/t/p/w154';
 
-export default ({ movies, fetchMovie }) => {
+function MovieList({ movies, fetchMovie }) {
   const movieList = movies.filter(movie => movie.poster_path).map(movie => (
     <GridTile
       key={movie.id}
@@ -40,4 +41,14 @@ export default ({ movies, fetchMovie }) => {
       </GridList>
     </div>
   );
+}
+
+MovieList.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+  })).isRequired,
+  fetchMovie: PropTypes.func.isRequired,
 };
+
+export default MovieList;

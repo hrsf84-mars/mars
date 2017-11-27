@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Avatar from 'material-ui/Avatar';
@@ -91,6 +92,17 @@ class SearchBox extends Component {
     );
   }
 }
+
+SearchBox.propTypes = {
+  primaryMovie: PropTypes.shape({
+    title: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+  secondaryMovie: PropTypes.shape({
+    title: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+};
 
 function mapStateToProps({ primaryMovie, secondaryMovie }) {
   return { primaryMovie, secondaryMovie };

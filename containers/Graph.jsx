@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Label, Tooltip, Legend } from 'recharts';
 
@@ -19,6 +20,16 @@ function Graph(props) {
     </div>
   );
 }
+
+Graph.propTypes = {
+  graphData: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  primaryMovie: PropTypes.shape({
+    title: PropTypes.string,
+  }).isRequired,
+  secondaryMovie: PropTypes.shape({
+    title: PropTypes.string,
+  }).isRequired,
+};
 
 function mapStateToProps({ graphData }) {
   return { graphData };

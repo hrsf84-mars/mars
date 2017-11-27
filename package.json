@@ -20,6 +20,7 @@
     "moment": "^2.19.2",
     "mongoose": "^4.13.4",
     "path": "^0.12.7",
+    "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-redux": "^5.0.6",

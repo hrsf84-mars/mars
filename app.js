@@ -27,7 +27,6 @@ app.get('/movie/:tmdbId', async (req, res) => {
     const movie = await Movie.findOne({ tmdbId });
     if (movie) {
       const emotion = await avgTweetEmotion(movie.title);
-      // const results = Object.assign({}, movie._doc, { emotion });
       const results = movie.toObject();
       results.emotion = emotion;
       return res.send(results);
