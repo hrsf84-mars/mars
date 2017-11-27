@@ -62,7 +62,7 @@ webpack && API_KEY=[YOUR TMDB API KEY] TWITTERAPI=[YOUR TWITTER API KEY] WATSONA
 
 ### Roadmap
 
-View the project roadmap [here](ROADMAP.md) and the plan [here][https://docs.google.com/document/d/15czq7Fzn3rc_JXZxyFtZpoqCtUIBf08MkfFHV2tYLOI/edit?usp=sharing].
+View the project roadmap [here](ROADMAP.md) and the plan [here](https://docs.google.com/document/d/15czq7Fzn3rc_JXZxyFtZpoqCtUIBf08MkfFHV2tYLOI/edit?usp=sharing)
 
 
 ## Contributing
