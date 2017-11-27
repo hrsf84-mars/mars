@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Title(props) {
   let { title } = props.primaryMovie;
@@ -10,5 +11,14 @@ function Title(props) {
     </div>
   );
 }
+
+Title.propTypes = {
+  primaryMovie: PropTypes.shape({
+    title: PropTypes.string,
+  }).isRequired,
+  secondaryMovie: PropTypes.shape({
+    title: PropTypes.string,
+  }).isRequired,
+};
 
 export default Title;

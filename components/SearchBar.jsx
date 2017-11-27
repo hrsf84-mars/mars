@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
   constructor() {
     super();
 
@@ -34,3 +35,10 @@ export default class SearchBar extends Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  onMovieSearch: PropTypes.func.isRequired,
+  floatingLabelText: PropTypes.string.isRequired,
+};
+
+export default SearchBar;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 import { List, ListItem } from 'material-ui/List';
@@ -35,7 +36,7 @@ const translateToCurrency = (value) => {
   return `$${res}`;
 };
 
-export default ({ primaryMovie, secondaryMovie }) => {
+function MovieInfo({ primaryMovie, secondaryMovie }) {
   const primaryTitle = primaryMovie.title;
   const secondaryTitle = secondaryMovie.title;
   return (
@@ -131,4 +132,25 @@ export default ({ primaryMovie, secondaryMovie }) => {
       </TableBody>
     </Table>
   );
+}
+
+MovieInfo.propTypes = {
+  primaryMovie: PropTypes.shape({
+    title: PropTypes.string,
+    revenue: PropTypes.number,
+    releaseDate: PropTypes.string,
+    emotion: PropTypes.shape({}),
+    genres: PropTypes.arrayOf(PropTypes.string),
+    productionCompanies: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+  secondaryMovie: PropTypes.shape({
+    title: PropTypes.string,
+    revenue: PropTypes.number,
+    releaseDate: PropTypes.string,
+    emotion: PropTypes.shape({}),
+    genres: PropTypes.arrayOf(PropTypes.string),
+    productionCompanies: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
 };
+
+export default MovieInfo;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import FlatButton from 'material-ui/FlatButton';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
@@ -7,7 +8,7 @@ import SocialJoy from 'material-ui/svg-icons/social/mood';
 import SocialSad from 'material-ui/svg-icons/social/mood-bad';
 import { lightGreen400, deepOrange900 } from 'material-ui/styles/colors';
 
-export default class Emotion extends Component {
+class Emotion extends Component {
   constructor(props) {
     super(props);
 
@@ -69,3 +70,15 @@ export default class Emotion extends Component {
     );
   }
 }
+
+Emotion.propTypes = {
+  emotion: PropTypes.shape({
+    sadness: PropTypes.number,
+    joy: PropTypes.number,
+    fear: PropTypes.number,
+    disgust: PropTypes.number,
+    anger: PropTypes.number,
+  }).isRequired,
+};
+
+export default Emotion;
