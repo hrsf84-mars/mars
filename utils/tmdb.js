@@ -20,7 +20,7 @@ exports.searchMoviesByName = query => (
 /*
  * Fetch movie data from TMDB by TMDB ID
  * @param {Number} id
- * @return {Promise:{}} data
+ * @return {Promise:{see https://developers.themoviedb.org/3/movies/get-movie-details}} data
  */
 exports.fetchMovieById = id => (
   axios.get(`http://api.themoviedb.org/3/movie/${id}`, {
