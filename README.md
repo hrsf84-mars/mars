@@ -35,6 +35,8 @@ An advanced movie database that gives passionate movie fans and studio executive
 - Redux
 - Axios
 - Google Trends API key
+- Twitter API key
+- Watson API key
 - Material UI
 - Mongoose
 - Path
@@ -54,7 +56,7 @@ npm install
 ### Setting up Development Server
 
 ```sh
-webpack && API_KEY=[YOUR TMDB API KEY] node app.js
+webpack && API_KEY=[YOUR TMDB API KEY] TWITTERAPI=[YOUR TWITTER API KEY] WATSONAPI=[YOUR WATSON API KEY] node app.js
 ```
 
 ### Roadmap
