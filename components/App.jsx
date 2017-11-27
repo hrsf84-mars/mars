@@ -7,7 +7,10 @@ import MovieDetail from '../containers/MovieDetail';
 export default function App() {
   return (
     <Paper>
-      <AppBar title="Cliff on Mars" showMenuIconButton={false} />
+      <AppBar
+        title="Cliff on Mars"
+        iconElementLeft={<img src="https://s3.amazonaws.com/tt-public-assets/Cliff_icon.png" alt="Logo" />}
+      />
       <SearchBox />
       <MovieDetail />
     </Paper>
