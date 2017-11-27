@@ -35,10 +35,15 @@ export default class Emotion extends Component {
 
   render() {
     const { emotion } = this.props;
-    const isHappy = emotion.joy >= emotion.sadness &&
-      emotion.joy >= emotion.fear &&
-      emotion.joy >= emotion.disgust &&
-      emotion.joy >= emotion.anger;
+    const sadness = emotion.sadness * 100;
+    const joy = emotion.joy * 100;
+    const fear = emotion.fear * 100;
+    const disgust = emotion.disgust * 100;
+    const anger = emotion.anger * 100;
+    const isHappy = joy >= sadness &&
+      joy >= fear &&
+      joy >= disgust &&
+      joy >= anger;
     const emotions = Object.entries(emotion);
 
     return (
