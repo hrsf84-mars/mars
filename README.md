@@ -27,7 +27,7 @@ Point your browser at cliffonmarsdb.herokuapp.com
 
 ## Requirements
 
-- Node
+- Node >= 8.0.0
 - Express
 - MongoDB
 - React
