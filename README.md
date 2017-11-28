@@ -8,7 +8,7 @@ An advanced movie database that gives passionate movie fans and studio executive
 
   - Joe: Social Media API and layout
   - Cliff: Documentation and testing
-  - Hubert: TMDB API, server setup, and machine learning
+  - Hubert: TMDB API, server setup, Material UI, and React / Redux.
   - Tim: Recharts and database
 
 ## Table of Contents
