@@ -6,7 +6,7 @@ An advanced movie database that gives passionate movie fans and studio executive
 
 ## Team and Areas of Responsibility
 
-  - Joe: Social Media API and layout
+  - Joe: Google Trends data fetching, Twitter search API request, Watson NLP API request, data analysis
   - Cliff: Documentation and testing
   - Hubert: TMDB API, server setup, Material UI, and React / Redux.
   - Tim: Recharts and database
