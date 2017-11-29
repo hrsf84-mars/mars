@@ -11,7 +11,7 @@ app.use(express.static('public'));
 const port = process.env.PORT || 7331;
 
 app.get('/', (req, res) => {
-  res.send('This is the landing page!');
+  res.send('This is da landing page!');
 });
 
 app.get('/search/:movie', (req, res) => {
