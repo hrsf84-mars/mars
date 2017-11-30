@@ -39,7 +39,6 @@ const translateToCurrency = (value) => {
 function MovieInfo({ primaryMovie, secondaryMovie }) {
   const primaryTitle = primaryMovie.title;
   const secondaryTitle = secondaryMovie.title;
-  console.log(primaryMovie);
   return (
     <Table fixedHeader>
       <TableHeader
