@@ -29,7 +29,7 @@ function Financials(props) {
       </div>
     )
   } else {
-    return (<div></div>)
+    return (<div>WITHOUT 2 MOVIES BEING COMPARED, THERE CANNOT BE AN ROI COMPARISON</div>)
   }
 }
 
