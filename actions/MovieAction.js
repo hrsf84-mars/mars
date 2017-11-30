@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const FETCH_MOVIE1 = 'FETCH_MOVIE1';
 export const FETCH_MOVIE2 = 'FETCH_MOVIE2';
+export const  FETCH_FINANCIALS= 'FETCH_FINANCIALS';
 
 export function fetchMovie1(id) {
   const request = axios.get(`/movie/${id}`);
@@ -20,3 +21,14 @@ export function fetchMovie2(id) {
     payload: request,
   };
 }
+
+export function fetchFinancials(movieName) {
+  const request = axios.get(`/financials`);
+
+  return {
+    type: FETCH_FINANCIALS,
+    payload: request,
+  };
+}
+
+
