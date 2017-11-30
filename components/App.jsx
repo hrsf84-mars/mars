@@ -1,15 +1,17 @@
 import React from 'react';
 import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
-import SearchBox from '../containers/SearchBox';
-import MovieDetail from '../containers/MovieDetail';
-
+import RaisedButton from 'material-ui/RaisedButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import IconButton from 'material-ui/IconButton';
+import SearchBox from '../containers/SearchBox';
+import MovieDetail from '../containers/MovieDetail';
+import Financials from '../containers/Financials';
 import Settings from './loggedin/settings.jsx';
 import SavedSearches from './loggedin/saved.jsx';
+import LogInPage from './loginpage.jsx';
 import LoggedInHomePage from './loggedin/loggedinhome.jsx';
 import {
   BrowserRouter as Router,
@@ -35,18 +37,20 @@ var App = () => {
                 anchorOrigin={{horizontal: 'left', vertical: 'top'}}
                 targetOrigin={{horizontal: 'left', vertical: 'top'}}
               >
-              <Link to="/settings">Test Click Here</Link>
-              <Link to="/">Home</Link>
-              <MenuItem primaryText="Home Test" />
+              <MenuItem primaryText="Home" containerElement={<Link to="/" />}/>
+              <MenuItem primaryText="Log In Page" containerElement={<Link to="/login-page" />}/>
+              <MenuItem primaryText="Financials / ROI" containerElement={<Link to="/financial" />}/>
               <MenuItem primaryText="Settings Page" containerElement={<Link to="/settings" />}/>
               <MenuItem primaryText="Saved Searches" containerElement={<Link to="/saved" />}/>
-              <MenuItem primaryText="LogIn" containerElement={<Link to="/loggedinhome" />}/>
+              <MenuItem primaryText="LogIn TEMP" containerElement={<Link to="/loggedinhome" />}/>
             </IconMenu>
           </AppBar>
           <hr/>
           <Route exact path="/" component={Core}/>
+          <Route path="/financial" component={Financials}/> 
           <Route path="/settings" component={Settings}/>
           <Route path="/saved" component={SavedSearches}/> 
+          <Route path="/login-page" component={LogInPage}/>
           <Route path="/loggedinhome" component={LoggedInHomePage}/>    
         </div>
       </Router>
@@ -70,8 +74,10 @@ class Core extends React.Component {
   render() {
     return (
       <Paper>
+          <RaisedButton label="LOG IN" containerElement={<Link to="/login-page" />}/>
           <SearchBox />
           <MovieDetail />
+          <Financials />
       </Paper>
     );
   }

@@ -15,6 +15,11 @@ app.get('/', (req, res) => {
   res.send('This is the landing page!');
 });
 
+app.get('/financials', (req, res) => {
+  res.status(200);
+  res.send("Hello");
+});
+
 app.get('/search/:movie', (req, res) => {
   tmdb.searchMoviesByName(req.params.movie).then((data) => {
     res.send(data);
