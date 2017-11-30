@@ -3,6 +3,7 @@ import Paper from 'material-ui/Paper';
 import AppBar from 'material-ui/AppBar';
 import SearchBox from '../containers/SearchBox';
 import MovieDetail from '../containers/MovieDetail';
+import Financials from '../containers/Financials';
 
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
