@@ -14,8 +14,10 @@ import LoggedInHomePage from './loggedin/loggedinhome.jsx';
 import {
   BrowserRouter as Router,
   Route,
-  Link
-} from 'react-router-dom'
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom';
 
 
 
