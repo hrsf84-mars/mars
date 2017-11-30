@@ -13,8 +13,8 @@ export default function App() {
         iconElementLeft={<img src="https://s3.amazonaws.com/tt-public-assets/Cliff_icon.png" alt="Logo" />}
       />
       <SearchBox />
-      <MovieDetail />
       <Financials />
+      <MovieDetail />
     </Paper>
   );
 }
