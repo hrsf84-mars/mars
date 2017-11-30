@@ -10,6 +10,7 @@ import reducers from '../reducers';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
+
 ReactDOM.render(
   <MuiThemeProvider>
     <Provider store={createStoreWithMiddleware(reducers)}>
