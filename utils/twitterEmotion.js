@@ -1,4 +1,7 @@
 const axios = require('axios');
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load();
+}
 
 const twitterApiUrl = 'https://api.twitter.com/1.1/search/tweets.json';
 const twitterToken = process.env.TWITTERAPI;
