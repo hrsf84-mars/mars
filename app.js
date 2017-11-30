@@ -4,10 +4,32 @@ const tmdb = require('./utils/tmdb');
 const { movieTrend } = require('./utils/trendFetch');
 const { avgTweetEmotion } = require('./utils/twitterEmotion');
 const Movie = require('./db/Movie');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const User = require('./db/User.js');
+const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
 
 const app = express();
 
 app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const port = process.env.PORT || 7331;
 
@@ -19,6 +41,32 @@ app.get('/financials', (req, res) => {
   res.status(200);
   res.send("Hello");
 });
+
+app.post('/signUp', (req, res) => {
+  // hasher(req.body.password);
+  // User.insert()
+
+  var currUser = new User( {
+    username: req.body.username,
+    hash: req.body.password
+  })
+
+  new Promise((resolve, reject) => { 
+    return resolve( currUser.save(function(err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('user saved');
+        return(newUser);
+      }
+    })
+  )})
+    .then( () => { 
+      res.status(200);
+      res.send();
+    })
+}
+
 
 app.get('/search/:movie', (req, res) => {
   tmdb.searchMoviesByName(req.params.movie).then((data) => {
