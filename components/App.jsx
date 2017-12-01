@@ -53,7 +53,6 @@ class App extends React.Component {
   //Login will change the state logged to true.
   //also will pass the username?
 
-
   render () {
     return (
       <Paper>
