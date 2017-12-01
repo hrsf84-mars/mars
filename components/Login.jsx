@@ -42,9 +42,11 @@ class Login extends React.Component {
     } else {
       axios.post('/login', {username: this.state.username, password: this.state.password})
         .then((res) => {
-          this.setSatet({loggedIn: res.data});
+          console.log(res.data);
+          this.setState({logged: res.data});
+          console.log(this.state.logged);
         })
-        .catch(() => { console.log('fail')})
+        .catch((err) => { console.log(err)})
     }
   }
 
