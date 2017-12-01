@@ -4,7 +4,9 @@ import FlatButton from 'material-ui/FlatButton';
 import PasswordField from 'material-ui-password-field';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import Signup from './Signup.jsx';
+import { connect } from 'react-redux';
+import { login } from '../actions/MovieAction';
+import { bindActionCreators } from 'redux';
 import {
   BrowserRouter as Router,
   Route,
@@ -43,7 +45,8 @@ class Login extends React.Component {
       axios.post('/login', {username: this.state.username, password: this.state.password})
         .then((res) => {
           console.log(res.data);
-          this.setState({logged: res.data});
+          // this.setState({logged: res.data});
+          this.props.login(res.data);
           console.log(this.state.logged);
         })
         .catch((err) => { console.log(err)})
@@ -81,4 +84,16 @@ class Login extends React.Component {
     );
   }
 }
-export default Login;
+// export default Login;
+
+
+
+function mapStateToProps({ login }) {
+  return { login };
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ login }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -20,6 +20,11 @@ import Menu from './Menu.jsx';
 import Settings from './loggedin/settings.jsx';
 import SavedSearches from './loggedin/saved.jsx';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import axios from 'axios';
+
 import {
   BrowserRouter as Router,
   Route,
@@ -30,11 +35,8 @@ import {
 } from 'react-router-dom';
 
 class App extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
-    this.state = {
-      logged: true
-    }
   }
 
   //this.props.history.location
@@ -42,7 +44,8 @@ class App extends React.Component {
   //if it doesn't have it, you must use withRouter
   titleClikedHandle() {
     console.log('Title is clicked');
-    this.props.history.push("/");
+    axios.get('/');
+    // this.props.history.push("/");
   }
 
   getConfirmation() {
@@ -54,6 +57,7 @@ class App extends React.Component {
   //also will pass the username?
 
   render () {
+    console.log(this.props.login);
     return (
       <Paper>
      
@@ -61,7 +65,7 @@ class App extends React.Component {
             <AppBar
               title="DEMO Movie DB"
               showMenuIconButton={false}
-              iconElementRight={this.state.logged ? <Menu /> : <RaisedButton label="LogIn" style={{margin: '20px'}} containerElement={<Link to="/login" />} /> }
+              iconElementRight={this.props.login ? <Menu /> : <RaisedButton label="LogIn" style={{margin: '20px'}} containerElement={<Link to="/login" />} /> }
               onTitleTouchTap={this.titleClikedHandle.bind(this)}
             />
             <hr/>
@@ -70,11 +74,11 @@ class App extends React.Component {
               <Route path="/login" component={Login}/>
               <Route path="/signup" component={Signup}/>
               
-              <Route path="/settings" render={props=> this.state.logged ? <Settings/> : <Redirect to={"/"} />} />
-              <Route path="/saved" render={props=> this.state.logged ? <SavedSearches/> : <Redirect to={"/"} />} /> 
-              <Route path="/financial" render={props=> this.state.logged ? <Financials/> : <Redirect to={"/"}/>} /> 
+              <Route path="/settings" render={props=> this.props.login ? <Settings/> : <Redirect to={"/"} />} />
+              <Route path="/saved" render={props=> this.props.login ? <SavedSearches/> : <Redirect to={"/"} />} /> 
+              <Route path="/financial" render={props=> this.props.login ? <Financials/> : <Redirect to={"/"}/>} /> 
 
-              <Route exact path="/" render={props=> <Home logged={this.state.logged}/>}/>
+              <Route exact path="/" render={props=> <Home logged={this.props.login}/>}/>
             </Switch>
 
           </div>
@@ -83,9 +87,11 @@ class App extends React.Component {
   }
 }
 
-export default withRouter(App);
 
 
+function mapStateToProps({ login }) {
+  return { login };
+}
 
-
+export default connect(mapStateToProps, null, null, {pure: false})(App);
 
