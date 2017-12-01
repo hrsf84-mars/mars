@@ -33,7 +33,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      logged: false
+      logged: true
     }
   }
 
@@ -44,6 +44,15 @@ class App extends React.Component {
     console.log('Title is clicked');
     this.props.history.push("/");
   }
+
+  getConfirmation() {
+    console.log('go to this route based on confirmation');
+
+  }
+
+  //Login will change the state logged to true.
+  //also will pass the username?
+
 
   render () {
     return (
@@ -61,10 +70,12 @@ class App extends React.Component {
             <Switch>
               <Route path="/login" component={Login}/>
               <Route path="/signup" component={Signup}/>
-              <Route path="/settings" component={Settings}/>
-              <Route path="/saved" component={SavedSearches}/> 
-              <Route path="/financial" component={Financials}/> 
-              <Route exact path="/" component={Home}/>
+              
+              <Route path="/settings" render={props=> this.state.logged ? <Settings/> : <Redirect to={"/"} />} />
+              <Route path="/saved" render={props=> this.state.logged ? <SavedSearches/> : <Redirect to={"/"} />} /> 
+              <Route path="/financial" render={props=> this.state.logged ? <Financials/> : <Redirect to={"/"}/>} /> 
+
+              <Route exact path="/" render={props=> <Home logged={this.state.logged}/>}/>
             </Switch>
 
           </div>
@@ -74,5 +85,8 @@ class App extends React.Component {
 }
 
 export default withRouter(App);
+
+
+
 
 

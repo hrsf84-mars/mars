@@ -1,9 +1,13 @@
 import React from 'react';
 
-var SavedSearches = () => (
+//saved Searches will take in [{movie1: Inception, movie2: Cars},...]
+//map each object to a SavedMovieComp
+
+var SavedSearches = (props) => (
+  
   <div>
     <h1>
-      Saved Searches Page Rendered
+      Saved Comparisons
     </h1>
   </div>
 );

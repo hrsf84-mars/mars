@@ -32,6 +32,9 @@ passport.use(new LocalStrategy(
   }
 ));
 
+const path = require('path')
+
+
 const app = express();
 
 app.use(express.static('public'));
@@ -53,6 +56,10 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
+
+app.get('*', function (request, response) {
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
 
 const port = process.env.PORT || 7331;
 
