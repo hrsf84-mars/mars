@@ -152,6 +152,7 @@ app.get('/movie/:tmdbId', async (req, res) => {
       const emotion = await avgTweetEmotion(movie.title);
       const results = movie.toObject();
       results.emotion = emotion;
+      console.log(results);
       return res.send(results);
     }
 
