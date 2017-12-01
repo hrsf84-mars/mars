@@ -44,8 +44,9 @@ class App extends React.Component {
   //if it doesn't have it, you must use withRouter
   titleClikedHandle() {
     console.log('Title is clicked');
-    axios.get('/');
-    // this.props.history.push("/");
+    console.log(this.props.login);
+    // axios.get('/');
+    this.props.history.push("/");
   }
 
   getConfirmation() {
@@ -65,7 +66,7 @@ class App extends React.Component {
             <AppBar
               title="DEMO Movie DB"
               showMenuIconButton={false}
-              iconElementRight={this.props.login ? <Menu /> : <RaisedButton label="LogIn" style={{margin: '20px'}} containerElement={<Link to="/login" />} /> }
+              iconElementRight={this.props.login ? <Menu /> : <RaisedButton label="LogIn" style={{margin: '20px'}} href="/login"  /> }
               onTitleTouchTap={this.titleClikedHandle.bind(this)}
             />
             <hr/>
@@ -93,5 +94,5 @@ function mapStateToProps({ login }) {
   return { login };
 }
 
-export default connect(mapStateToProps, null, null, {pure: false})(App);
+export default withRouter(connect(mapStateToProps)(App));
 

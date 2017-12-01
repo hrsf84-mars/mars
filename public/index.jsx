@@ -23,9 +23,10 @@ ReactDOM.render(
   <MuiThemeProvider>
     <Provider store={createStoreWithMiddleware(reducers)}>
     	<Router>
-      		<App />
-      	</Router>
+        <App />
+      </Router>
     </Provider>
   </MuiThemeProvider>,
   document.getElementById('app'),
 );
+
