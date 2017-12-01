@@ -32,6 +32,9 @@ passport.use(new LocalStrategy(
   }
 ));
 
+const path = require('path')
+
+
 const app = express();
 
 app.use(express.static('public'));
@@ -53,6 +56,21 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
+app.get('/settings', function (request, response) {  
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+app.get('/saved', function (request, response) {  
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+app.get('/financial', function (request, response) {  
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+app.get('/signup', function (request, response) {  
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+app.get('/login', function (request, response) {  
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
 
 const port = process.env.PORT || 7331;
 
