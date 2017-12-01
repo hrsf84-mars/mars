@@ -56,8 +56,19 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-
-app.get('*', function (request, response) {
+app.get('/settings', function (request, response) {  
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+app.get('/saved', function (request, response) {  
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+app.get('/financial', function (request, response) {  
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+app.get('/signup', function (request, response) {  
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+app.get('/login', function (request, response) {  
   response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
