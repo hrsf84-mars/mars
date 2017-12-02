@@ -5,6 +5,7 @@ import Paper from 'material-ui/Paper';
 import Title from '../components/Title';
 import Graph from './Graph';
 import MovieInfo from '../components/MovieInfo';
+import Financials from './Financials'
 
 const style = { padding: '35px' };
 
@@ -19,6 +20,7 @@ function MovieDetail(props) {
         primaryMovie={props.primaryMovie}
         secondaryMovie={props.secondaryMovie}
       />
+      <Financials/>
       <MovieInfo
         primaryMovie={props.primaryMovie}
         secondaryMovie={props.secondaryMovie}
