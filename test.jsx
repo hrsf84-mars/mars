@@ -1,5 +1,3 @@
-
-const modules = require('../components');
 import Redux from 'redux'
 import React from 'react';
 import Enzyme from 'enzyme';
@@ -20,7 +18,7 @@ import SecondaryTestData from './components/_secondaryTestData';
 
 
 import Title from './components/title';
-import {Login as loginTest} from '../components/login';
+import {Login as loginTest} from './components/login';
 import SearchBar from './components/searchbar';
 
 const babelJest = require('babel-jest');
