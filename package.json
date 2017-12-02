@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "npm rebuild & node app",
-    "test": "jest & mocha specs --recursive --timeout 15000 --exit",
+    "test": "jest && mocha specs --recursive --timeout 15000 --exit",
     "heroku-postbuild": "npm install --only=dev --dev && webpack -p --config ./webpack.config.js --progress"
   },
   "dependencies": {
