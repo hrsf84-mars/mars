@@ -10,17 +10,17 @@ import {connect} from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import App from './components/App';
-import Home from '../components/home';
-import Menu from '../components/menu';
-import MovieList from '../components/movielist';
-import MovieInfo from '../components/movieinfo';
-import PrimaryTestData from '../components/_primaryTestData';
-import SecondaryTestData from '../components/_secondaryTestData';
+import Home from './components/home';
+import Menu from './components/menu';
+import MovieList from './components/movielist';
+import MovieInfo from './components/movieinfo';
+import PrimaryTestData from './components/_primaryTestData';
+import SecondaryTestData from './components/_secondaryTestData';
 
 
-import Title from '../components/title';
+import Title from './components/title';
 import {Login as loginTest} from '../components/login';
-import SearchBar from '../components/searchbar';
+import SearchBar from './components/searchbar';
 
 const babelJest = require('babel-jest');
 
