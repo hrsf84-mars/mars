@@ -1,4 +1,5 @@
 
+const modules = require('../components');
 import Redux from 'redux'
 import React from 'react';
 import Enzyme from 'enzyme';
