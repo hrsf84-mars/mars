@@ -9,7 +9,6 @@ function Home(props) {
     <div>
       <SearchBox />
       <MovieDetail />
-      <Financials />
     </div>
   );
 }
