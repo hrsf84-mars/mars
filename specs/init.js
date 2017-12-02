@@ -22,8 +22,8 @@ describe('Init', () => {
 
   // it(' should gracefully handle errors for movies released before 2010', () => {
   //   console.log('called error pre 2010');
-  //   // var chinatown = searchFunction('Chinatown')
-  //   // expect(chinatown).to.not.have.a.property('estimatedProfit')
+  //   var chinatown = SearchBox.onMovieSearch('Chinatown')
+  //   expect(chinatown).to.not.have.a.property('estimatedProfit')
   // });
 
   // it('should check database first to see if a movie is already in it', () => {
@@ -50,7 +50,7 @@ describe('Init', () => {
     expect(data).to.have.a.property('title');
     expect(data).to.have.a.property('images');
     // I'd actually like to write this one later, when I can see what's coming back from
-    // the db when I run ths on localhost
+    // the db when I run this on localhost
     // I'll incorporate .then later, and add the correct function
     // var getOut = (searchFunction('Get Out'));
     // expect(getOut).to.have.a.property('budget');
@@ -124,6 +124,25 @@ describe('loading routes', () => {
   it('responds to searchmovie', (done) => {
     request(server)
       .get('/search/:movie')
+      .expect(200, done);
+  });
+  it('responds to /login', (done) => {
+    request(server)
+      .get('/login')
+      .expect(200, done);
+  });
+  it('responds to /financials', (done) => {
+    request(server)
+      .get('/financials')
+      .expect(200, done);
+  });
+  it('responds to /signup', (done) => {
+    request(server)
+      .post('/signUp')
+      .send({
+        username: 'username@wonderflow.co',
+        password: 'password',
+      })
       .expect(200, done);
   });
   it('should throw an error for a bad request', (done) => {
