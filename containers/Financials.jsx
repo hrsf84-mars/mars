@@ -31,7 +31,7 @@ function Financials(props) {
     ]
 
 
-    if(props.primaryMovie.title && props.secondaryMovie.title ) {
+    if(props.primaryMovie.title && props.secondaryMovie.title && props.login) {
     return (
       <div>
         <h4 id="title" onClick={props.fetchFinancials}> {props.primaryMovie.title} vs. {props.secondaryMovie.title}</h4>

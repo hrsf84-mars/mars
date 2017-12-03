@@ -35,12 +35,14 @@ class Signup extends React.Component {
   }
 
   createUser(obj) {
-    if (this.state.password === this.state.password2) {
-      alert('password dont match idiot')
+    if (this.state.password !== this.state.password2) {
+      alert('These passwords do not match')
     } else {
       axios.post('/signUp', {username: this.state.username, password: this.state.password})
         .then(() => {
           console.log('success from sign up')
+          alert("Thanks for signing up");
+          this.props.history.push('/login');
         })
         .catch(() => { console.log('fail')})
     }

@@ -48,6 +48,11 @@ export class Login extends React.Component {
           // this.setState({logged: res.data});
           this.props.login(res.data);
           console.log(this.state.logged);
+          if (res.data) {
+            this.props.history.push('/');
+          } else {
+            alert("Username/Password combo not found");
+          }
         })
         .catch((err) => { console.log(err)})
     }

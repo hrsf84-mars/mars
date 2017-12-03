@@ -12,6 +12,7 @@ const bcrypt = require('bcrypt');
 var flash = require('connect-flash');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const axios = require('axios');
 
 
 passport.use(new LocalStrategy(
@@ -72,6 +73,7 @@ app.get('/login', function (request, response) {
   response.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 });
 
+
 const port = process.env.PORT || 7331;
 
 app.post('/login',
@@ -83,6 +85,18 @@ app.post('/login',
 app.get('/', (req, res) => {
   res.send('This is the landing page!');
 });
+
+app.get('/vid', function (req, res) {
+  console.log('****************', req.query.query);
+  let query = req.query.query.split(" ").join("+") + "+trailer";
+  console.log(query);
+  axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=${process.env.YOUTUBE_API}`)
+    .then( (result) =>{ 
+      res.status(200);
+      res.send(JSON.stringify(result.data.items[0]))
+    })
+});
+
 
 // app.get('/userInfo', (req, res) => {
 //   console.log('user info', req.user)
@@ -152,7 +166,6 @@ app.get('/movie/:tmdbId', async (req, res) => {
       const emotion = await avgTweetEmotion(movie.title);
       const results = movie.toObject();
       results.emotion = emotion;
-      console.log(results);
       return res.send(results);
     }
 
