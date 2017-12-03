@@ -1,4 +1,5 @@
 body {
+	font-family: 'Roboto', sans-serif;
   text-align: center;
 }
 
@@ -8,4 +9,30 @@ body {
 
 .recharts-wrapper {
   margin: 0 auto;
+}
+
+
+.video-player-div {
+    position: relative;
+    padding: 1em 1em 1em;
+    border: 1px solid #d8d8d8;
+    box-sizing: inherit;
+    width: 60%;
+    margin: auto;
+    background-color: black;
+}
+
+.video-react .video-react-big-play-button {
+  margin-top: -50px;
+}
+
+.vidButton {
+  float: right;
+}
+
+h5 {
+    color: white;
+
+.material-icons {
+	cursor: pointer;
 }

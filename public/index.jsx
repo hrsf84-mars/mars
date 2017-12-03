@@ -6,14 +6,27 @@ import ReduxPromise from 'redux-promise';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import App from '../components/App';
 import reducers from '../reducers';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter,
+  Switch,
+} from 'react-router-dom';
+
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+
 
 ReactDOM.render(
   <MuiThemeProvider>
     <Provider store={createStoreWithMiddleware(reducers)}>
-      <App />
+    	<Router>
+        <App />
+      </Router>
     </Provider>
   </MuiThemeProvider>,
   document.getElementById('app'),
 );
+

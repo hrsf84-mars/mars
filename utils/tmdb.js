@@ -1,4 +1,7 @@
 const axios = require('axios');
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load();
+}
 
 /*
  * Fetch search results from TMDB by keyword query
@@ -14,7 +17,7 @@ exports.searchMoviesByName = query => (
     },
   }).then(res => (
     res.data
-  )).catch(err => console.error(err.response.data.status_message))
+  )).catch(err => console.error('movies',err.response.data.status_message))
 );
 
 /*
@@ -30,7 +33,7 @@ exports.fetchMovieById = id => (
     },
   }).then(res => (
     res.data
-  )).catch(err => console.error(err.response.data.status_message))
+  )).catch(err => console.error('movies', err.response.data.status_message))
 );
 
 /*
@@ -47,5 +50,5 @@ exports.fetchImageById = id => (
   }).then((res) => {
     const images = res.data.backdrops;
     return images.map(img => img.file_path);
-  }).catch(err => console.error(err.response.data.status_message))
+  }).catch(err => console.error('movies', err.response.data.status_message))
 );
