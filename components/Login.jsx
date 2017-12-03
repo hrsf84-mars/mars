@@ -20,7 +20,7 @@ const style = {
   margin: 12,
 };
 
-class Login extends React.Component {
+export class Login extends React.Component {
 
   constructor(props) {
     super(props);
@@ -85,7 +85,6 @@ class Login extends React.Component {
   }
 }
 // export default Login;
-
 
 
 function mapStateToProps({ login }) {

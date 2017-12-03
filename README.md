@@ -1,15 +1,15 @@
 # Project Name
 
-### Cliff on Mars
+### DEMI DB
 
 An advanced movie database that gives passionate movie fans and studio executives easy access to movie data and social media stats of recent films.
 
 ## Team and Areas of Responsibility
 
-  - Joe: Google Trends data fetching, Twitter search API request, Watson NLP API request, data analysis
-  - Cliff: Documentation and testing
-  - Hubert: TMDB API, server setup, Material UI, and React / Redux.
-  - Tim: Recharts and database
+  - Donovon: Authentication & Testing
+  - Mike: React Router & Customizable Graphs
+  - Enki: React Router & Saved Searchers
+  - Ifi: Authentication & ROI Component
 
 ## Table of Contents
 
