@@ -23,7 +23,7 @@ const Menu = (props) => (
       anchorOrigin={{horizontal: 'left', vertical: 'top'}}
       targetOrigin={{horizontal: 'left', vertical: 'top'}}
     >
-    <p>Username Goes here</p>
+    <p> Hello {props.username}! </p>
     <MenuItem primaryText="Home" containerElement={<Link to="/" />}/>
     <MenuItem primaryText="Settings" containerElement={<Link to="/settings" />}/>
     <MenuItem primaryText="Saved" containerElement={<Link to="/saved" />}/>

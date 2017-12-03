@@ -165,7 +165,7 @@ app.post('/saveMovie', (req, res) => {
 
 app.get('/savedMovies', (req, res) => {
   console.log('req body in get savedMovies: ', req.body);
-//TODO: READ USERNAME FROM REQ
+  //TODO: READ USERNAME FROM REQ
   var username = 'Enki';
   SavedMovies.find({username: username}, function(err, result) {
     // console.log('querying database with username ENki : ', result);

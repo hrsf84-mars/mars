@@ -145,10 +145,11 @@ class TableComponent extends React.Component {
 	      	}
 	      </TableBody>
 	      <TableFooter>
-	        <TableRow>
+	        <TableRow style={{backgroundColor: '#a0c1f7'}}>
 	          <TableRowColumn colSpan="3" style={{textAlign: 'center'}}>
 	            
-	          <i class="material-icons" onClick={this.deleteClicked.bind(this)}>delete</i>
+	         	<i class="material-icons">delete_forever</i>
+	          <i class="material-icons" onClick={this.deleteClicked.bind(this)}>delete_forever</i>
 	          </TableRowColumn>
 	        </TableRow>
 	      </TableFooter>

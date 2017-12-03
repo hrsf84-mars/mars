@@ -44,7 +44,9 @@ class SavedSearches extends React.Component {
 				<TableComponent user={this.props.username} movies={this.props.savedMovies} fetchSaved={this.props.fetchSavedMovies} />
 			)
 		} else {
-			return <div>There are no saved Comparisons.</div>
+			return (
+				<div>There are no saved Comparisons.</div>
+			)
 		}
 
 	}

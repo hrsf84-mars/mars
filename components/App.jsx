@@ -66,7 +66,7 @@ class App extends React.Component {
             <AppBar
               title="DEMO Movie DB"
               showMenuIconButton={false}
-              iconElementRight={this.props.login ? <Menu /> : <RaisedButton label="LogIn" style={{margin: '20px'}} href="/login"  /> }
+              iconElementRight={this.props.login ? <Menu username={this.props.username}/> : <RaisedButton label="LogIn" style={{margin: '20px'}} href="/login"  /> }
               onTitleTouchTap={this.titleClikedHandle.bind(this)}
             />
             
@@ -91,8 +91,8 @@ class App extends React.Component {
 
 
 
-function mapStateToProps({ login }) {
-  return { login };
+function mapStateToProps({ login, username }) {
+  return { login, username };
 }
 
 
