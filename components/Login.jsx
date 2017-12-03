@@ -5,7 +5,8 @@ import PasswordField from 'material-ui-password-field';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
-import { login } from '../actions/MovieAction';
+import { login, fetchUsername, fetchSavedMovies } from '../actions/MovieAction';
+
 import { bindActionCreators } from 'redux';
 import {
   BrowserRouter as Router,
@@ -46,7 +47,20 @@ export class Login extends React.Component {
         .then((res) => {
           console.log(res.data);
           // this.setState({logged: res.data});
+          
+          //dispatch actions
+          
           this.props.login(res.data);
+          if (res.data) {
+            this.props.fetchUsername(this.state.username, );
+            //this.props.fetchSavedMovies(this.state.username);
+
+            //TODO can probably delete this,
+            this.props.fetchSavedMovies(this.state.username);
+            //also save the savedMovies from the database associated
+            // with the user to Redux Store.
+          }
+
           console.log(this.state.logged);
           if (res.data) {
             this.props.history.push('/');
@@ -97,7 +111,7 @@ function mapStateToProps({ login }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ login }, dispatch);
+  return bindActionCreators({ login, fetchUsername, fetchSavedMovies }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

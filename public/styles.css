@@ -1,4 +1,5 @@
 body {
+	font-family: 'Roboto', sans-serif;
   text-align: center;
 }
 
@@ -9,6 +10,7 @@ body {
 .recharts-wrapper {
   margin: 0 auto;
 }
+
 
 .video-player-div {
     position: relative;
@@ -30,4 +32,7 @@ body {
 
 h5 {
     color: white;
+
+.material-icons {
+	cursor: pointer;
 }

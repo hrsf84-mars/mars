@@ -18,7 +18,7 @@ import Signup from './Signup.jsx';
 import Menu from './Menu.jsx';
 
 import Settings from './loggedin/settings.jsx';
-import SavedSearches from './loggedin/saved.jsx';
+import SavedSearches from './loggedin/SavedSearches.jsx';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -69,6 +69,7 @@ class App extends React.Component {
               iconElementRight={this.props.login ? <Menu /> : <RaisedButton label="LogIn" style={{margin: '20px'}} href="/login"  /> }
               onTitleTouchTap={this.titleClikedHandle.bind(this)}
             />
+            
             <hr/>
 
             <Switch>
@@ -76,7 +77,7 @@ class App extends React.Component {
               <Route path="/signup" component={Signup}/>
               
               <Route path="/settings" render={props=> this.props.login ? <Settings/> : <Redirect to={"/"} />} />
-              <Route path="/saved" render={props=> this.props.login ? <SavedSearches/> : <Redirect to={"/"} />} /> 
+              <Route path="/saved" render={props=> this.props.login ? <SavedSearches /> : <Redirect to={"/"} />} /> 
               <Route path="/financial" render={props=> this.props.login ? <Financials/> : <Redirect to={"/"}/>} /> 
 
               <Route exact path="/" render={props=> <Home logged={this.props.login}/>}/>

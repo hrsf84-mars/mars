@@ -7,6 +7,7 @@ const Movie = require('./db/Movie');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./db/User.js');
+const SavedMovies = require('./db/SavedMovies.js');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 var flash = require('connect-flash');
@@ -34,8 +35,6 @@ passport.use(new LocalStrategy(
 ));
 
 const path = require('path')
-
-
 const app = express();
 
 app.use(express.static('public'));
@@ -149,6 +148,56 @@ app.post('/signUp', (req, res) => {
       res.send();
     })
 })
+
+app.post('/saveMovie', (req, res) => {
+  //save the username, firstMovie, secondMovie to database.
+  // console.log('making post request to server to store to database');
+  console.log('Save this movie to my database: ', req.body);
+  var movie = new SavedMovies(req.body);
+  movie.save(function(err, result) {
+    if (err) {
+      console.log('Was not able to save Comparison to DB');
+    }
+    console.log('Saved Comparison to DB');
+    res.send('Success');
+  });
+});
+
+app.get('/savedMovies', (req, res) => {
+  console.log('req body in get savedMovies: ', req.body);
+//TODO: READ USERNAME FROM REQ
+  var username = 'Enki';
+  SavedMovies.find({username: username}, function(err, result) {
+    // console.log('querying database with username ENki : ', result);
+    res.send(result);
+  })
+  // const savedMovies = await SavedMovies.find({ username: req.body.username });
+    // if (movie) {
+    //   const emotion = await avgTweetEmotion(movie.title);
+    //   const results = movie.toObject();
+    //   results.emotion = emotion;
+    //   console.log(results);
+    //   return res.send(results);
+    // }
+});
+
+app.put('/deleteSaved', (req, res) => {
+  console.log('axios pt request in server');
+  //for each of the items in the object, delete it
+  for (var key in req.body) {
+    var movieObj = req.body[key];
+    delete movieObj.id
+    SavedMovies.remove(movieObj, function(err, result) {
+      if (err) {
+        console.log('Database could not delete');
+      }
+    });
+  }
+  res.send();
+  //SavedMovies.find({ username: , firstMovie:, secondMovie: }).remove( callback )
+  //[{}]
+  //for each object in the array, call remove on the database.
+});
 
 
 app.get('/search/:movie', (req, res) => {

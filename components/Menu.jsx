@@ -25,7 +25,6 @@ const Menu = (props) => (
     >
     <p>Username Goes here</p>
     <MenuItem primaryText="Home" containerElement={<Link to="/" />}/>
-    <MenuItem primaryText="Financials / ROI" containerElement={<Link to="/financial" />}/>
     <MenuItem primaryText="Settings" containerElement={<Link to="/settings" />}/>
     <MenuItem primaryText="Saved" containerElement={<Link to="/saved" />}/>
     <MenuItem primaryText="LogOut" containerElement={<Link to="/" />}/>
