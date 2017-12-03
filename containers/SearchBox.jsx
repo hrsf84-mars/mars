@@ -84,6 +84,7 @@ class SearchBox extends Component {
 
   showDiv() {
     this.setState({showTrailer: false})
+  }
 
   saveComparisonHandler() {
  
